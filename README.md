@@ -19,5 +19,9 @@ Movie Fuel project
 8. Team lead and members will approve/deny pull request
 
 
+# Notes
+[OneNote](https://1drv.ms/o/s!ApP_R6BWyXl_iRcVc1mQlGErCN8H?e=lo5D76)
+
+
    
 
