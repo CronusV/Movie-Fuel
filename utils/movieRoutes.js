@@ -3,10 +3,11 @@ const router = express.Router();
 const logic = require('./movieUtil');
 
 router.get('/discover', (req, res) => {
-    const include = req.query.include;
-    const exclude = req.query.exclude;
+    const include = (req.query.include);
+    const exclude = (req.query.exclude);
+    console.log(include + '    '+exclude);
+    const page = (req.query.page);
     const sortBy = req.query.sortBy;
-    const page = req.query.page;
     logic.filteredSearchSimple(include,exclude,sortBy,page)
     .then((data) => {
         res.status(200);
@@ -18,7 +19,7 @@ router.get('/discover', (req, res) => {
     })
 });
 router.get('/search/byID', (req, res) => {
-    const id = req.query.id;
+    const id = req.query.idnumber;
     logic.searchDataBaseByID(id)
     .then((data) => {
         res.status(200);
@@ -31,7 +32,7 @@ router.get('/search/byID', (req, res) => {
 });
 router.get('/images', (req,res) => {
     const id = req.query.id;
-    getImagesByID(id)
+    logic.getImagesByID(id)
     .then((data) => {
         res.status(200);
         res.send(data)

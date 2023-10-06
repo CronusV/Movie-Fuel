@@ -43,9 +43,10 @@ function searchDataBaseByID(id) {
     return (data);
 }
 // filtered search
-function filteredSearchSimple(genresInclude, genresExclude, orderBy, page) {
+function filteredSearchSimple(genresInclude, genresExclude,sortBy, page) {
     var fetch = require('node-fetch');
-    var url = "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=".concat(page, "&sort_by=").concat(orderBy, "&with_genres=").concat(genresInclude, "&without_genres=").concat(genresExclude);
+    var url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&with_genres=${genresInclude}&without_genres=${genresExclude}&sort_by=${sortBy}`;
+    console.log(url);
     var options = {
         method: 'GET',
         headers: {
@@ -87,12 +88,12 @@ function getImagesByID(id) {
 function buildImageURL(path) {
     return "https://image.tmdb.org/t/p/original" + path;
 }
-// filteredSearchSimple("12","28,18","revenue.desc",1)
+// filteredSearchSimple("12","28,18",1)
 // .then((data) => {
 //     console.log(data)
 // })
 // .catch(err => console.error('error:' + err));
-// getImagesByID(330457)
+// searchDataBaseByID(330457)
 //     .then(function (data) {
 //     console.log(data);
 //     console.log(buildImageURL(data.posters[0].file_path));
