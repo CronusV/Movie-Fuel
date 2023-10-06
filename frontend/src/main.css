@@ -1,0 +1,19 @@
+body {
+  background-color: brown;
+}
+.carousel {
+  width: 600px;
+}
+
+.carousel img {
+  max-height: 600px;
+  width: 100%;
+}
+
+.hero {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
