@@ -101,3 +101,10 @@ getImagesByID(330457)
   console.log(buildImageURL(data.posters[0].file_path))
 })
 .catch(err => console.error('error:' + err));
+module.exports = {
+  searchDataBaseByQuery,
+  searchDataBaseByID,
+  filteredSearchSimple,
+  getImagesByID,
+  buildImageURL
+}

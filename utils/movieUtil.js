@@ -92,9 +92,16 @@ function buildImageURL(path) {
 //     console.log(data)
 // })
 // .catch(err => console.error('error:' + err));
-getImagesByID(330457)
-    .then(function (data) {
-    console.log(data);
-    console.log(buildImageURL(data.posters[0].file_path));
-})
-    .catch(function (err) { return console.error('error:' + err); });
+// getImagesByID(330457)
+//     .then(function (data) {
+//     console.log(data);
+//     console.log(buildImageURL(data.posters[0].file_path));
+// })
+//     .catch(function (err) { return console.error('error:' + err); });
+module.exports = {
+searchDataBaseByQuery,
+searchDataBaseByID,
+filteredSearchSimple,
+getImagesByID,
+buildImageURL
+}
