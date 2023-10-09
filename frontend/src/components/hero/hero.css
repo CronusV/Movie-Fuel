@@ -61,14 +61,20 @@
 
 .hero-content_right {
   flex: 1;
-  height: 85%;
+  height: 85%;  
+  gap: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding-top: 10px;
+  justify-content: center;
 }
 
 .hero-content_right h1 {
   text-transform: uppercase;
   font-family: "Playfair Display", sans-serif;
+}
+
+.hero-content_right > div {
+  align-self: center;
+  width: 300px;
+  height: 500px;
 }
