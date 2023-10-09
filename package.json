@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "description": "Movie Fuel project",
   "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
   "scripts": {
-    "test": "jest"
+    "dev": "concurrently \"cd backend/src && nodemon index.ts\" \"cd frontend && npm run start\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "Scott Nelson, Damion Dollar, Duncan Stewart, Alejandro Estrada",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^29.7.0",
-    "nodemon": "^3.0.1"
+    "concurrently": "^8.2.1",
+    "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1"
   }
 }
