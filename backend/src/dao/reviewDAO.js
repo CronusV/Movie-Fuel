@@ -8,4 +8,4 @@ const docClient = new AWS.DynamoDB.DocumentClient();
 // This is table name in dynamoDB
 const TableName = 'MovieFuel-Reviews';
 
-//
+function addReview(PostID, Author, Title, Movie, Comment, DateTime) {}
