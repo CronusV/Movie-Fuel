@@ -2,6 +2,7 @@
 require('dotenv').config({ path: require('find-config')('.env') });
 
 const key = process.env.TMDB_accessToken
+
 function searchDataBaseByQuery(query, language = 'en-US', page = 1) {
   const fetch = require('node-fetch');
   const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=${language}&page=${page}`

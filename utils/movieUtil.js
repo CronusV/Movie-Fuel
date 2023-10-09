@@ -16,8 +16,8 @@ function searchDataBaseByQuery(query, language, page) {
         fetch(url, options)
             .then(function (res) { return res.json(); })
             .then(function (json) {
-            resolve(json);
-        })
+                resolve(json);
+            })
             .catch(function (err) { return console.error('error:' + err); });
     });
     return (data);
@@ -36,8 +36,8 @@ function searchDataBaseByID(id) {
         fetch(url, options)
             .then(function (res) { return res.json(); })
             .then(function (json) {
-            resolve(json);
-        })
+                resolve(json);
+            })
             .catch(function (err) { return console.error('error:' + err); });
     });
     return (data);
@@ -57,8 +57,8 @@ function filteredSearchSimple(genresInclude, genresExclude, orderBy, page) {
         fetch(url, options)
             .then(function (res) { return res.json(); })
             .then(function (json) {
-            resolve(json);
-        })
+                resolve(json);
+            })
             .catch(function (err) { return console.error('error:' + err); });
     });
     return (data);
@@ -78,8 +78,8 @@ function getImagesByID(id) {
         fetch(url, options)
             .then(function (res) { return res.json(); })
             .then(function (json) {
-            resolve(json);
-        })
+                resolve(json);
+            })
             .catch(function (err) { return console.error('error:' + err); });
     });
     return (data);
@@ -94,7 +94,10 @@ function buildImageURL(path) {
 // .catch(err => console.error('error:' + err));
 getImagesByID(330457)
     .then(function (data) {
-    console.log(data);
-    console.log(buildImageURL(data.posters[0].file_path));
-})
+        console.log(data);
+        console.log(buildImageURL(data.posters[0].file_path));
+    })
     .catch(function (err) { return console.error('error:' + err); });
+export function buildImageURL(path) {
+    return `https://image.tmdb.org/t/p/original${path}`;
+}
