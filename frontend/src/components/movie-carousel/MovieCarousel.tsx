@@ -3,11 +3,11 @@ import { Movie } from "../../types/Movie";
 
 import "./moviecarousel.css";
 
-type Props = { movies: Movie[] };
+type Props = { movies: Movie[]};
 
 export default function MovieCarousel({ movies }: Props) {
   return (
-    <Carousel className="carousel" controls={false} indicators={false}>
+    <Carousel className="carousel" controls={false} indicators={false} interval={3000}>
       {movies.map((movie) => {
         return (
           <Carousel.Item key={movie.id} className="border border-warning rounded overflow-hidden">
