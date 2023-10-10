@@ -39,3 +39,5 @@ router.post('/', async (req, res) => {
     res.status(500).send({ message: 'Failed to add review to database' });
   }
 });
+
+module.exports = router;
