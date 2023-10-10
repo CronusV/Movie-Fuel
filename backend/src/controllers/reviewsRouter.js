@@ -17,5 +17,25 @@ router.post('/', async (req, res) => {
     return;
   }
   const postID = uuid.v4();
-  const Date = new Date();
+  const dateTime = new Date();
+  try {
+    const dataReview = await reviewDAO.addReview(
+      postID,
+      body.Author,
+      body.Title,
+      body.Movie,
+      body.Comment,
+      dateTime
+    );
+    // if valid then data is simply {}
+    logger.info(`Successful Review POST:\n ${JSON.stringify(body)}`);
+    const newReview = { ...body, dateTime, postID };
+    res.status(201).send({
+      message: 'Successfully created Review',
+      data: newReview,
+    });
+  } catch (err) {
+    logger.info(`Failed to add ticket to dynamoDB: ${err}`);
+    res.status(500).send({ message: 'Failed to add review to database' });
+  }
 });
