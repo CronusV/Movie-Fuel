@@ -22,21 +22,21 @@ function ButtonDropdownsExample() {
       <InputGroup className="w-50 p-3">
       <form className="d-flex" onSubmit={onSubmit}>
         <DropdownButton
-          variant="primary"
+          variant="danger"
           title="Sort by"
           id="input-group-dropdown-1"
           onChange={dropDownClick}
         >
-          <Dropdown.Item onClick={dropDownClick} href="#" id='1'>revenue descending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='2'>revenue ascending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='3'>popularity descending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='4'>popularity ascending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='5'>rating descending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='6'>rating ascending</Dropdown.Item>
+          <Dropdown.Item onClick={dropDownClick} href="#" id='revenue.desc'>revenue descending</Dropdown.Item>
+          <Dropdown.Item onClick={dropDownClick} href="#" id='revenue.asc'>revenue ascending</Dropdown.Item>
+          <Dropdown.Item onClick={dropDownClick} href="#" id='popularity.desc'>popularity descending</Dropdown.Item>
+          <Dropdown.Item onClick={dropDownClick} href="#" id='popularity.asc'>popularity ascending</Dropdown.Item>
+          <Dropdown.Item onClick={dropDownClick} href="#" id='rating.desc'>rating descending</Dropdown.Item>
+          <Dropdown.Item onClick={dropDownClick} href="#" id='rating.asc'>rating ascending</Dropdown.Item>
         </DropdownButton>
         
             <input type='text' className='form-control' placeholder="Search movies" onChange={onChange}></input>
-            <input type="submit" id='submitfire' className='btn btn-primary' value='Go' onClick={onSubmit}></input>
+            <input type="submit" id='submitfire' className='btn btn-danger' value='Go' onClick={onSubmit}></input>
         </form>
       </InputGroup>
     </>
