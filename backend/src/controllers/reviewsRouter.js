@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     return;
   }
   const postID = uuid.v4();
-  const dateTime = new Date();
+  const dateTime = new Date().toString();
   try {
     const dataReview = await reviewDAO.addReview(
       postID,
@@ -28,8 +28,8 @@ router.post('/', async (req, res) => {
       dateTime
     );
     // if valid then data is simply {}
-    logger.info(`Successful Review POST:\n ${JSON.stringify(body)}`);
     const newReview = { ...body, dateTime, postID };
+    logger.info(`Successful Review POST:\n ${JSON.stringify(newReview)}`);
     res.status(201).send({
       message: 'Successfully created Review',
       data: newReview,
