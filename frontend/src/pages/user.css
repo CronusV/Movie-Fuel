@@ -1,0 +1,16 @@
+#container {
+    color: black;
+}
+
+#profile-circle {
+    color: white;
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    align-items: center;
+    border: solid bisque;
+}
+
+#username-box {
+    border: solid bisque;
+}
