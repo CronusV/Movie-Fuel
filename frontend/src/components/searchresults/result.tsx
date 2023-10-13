@@ -30,15 +30,15 @@ function SearchResult(movie: resultItem) {
         <Card.Body>
             <div className="d-flex align-items-center">
                 <Image src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} 
-                    alt='Movie Poster' className='me-3 d-flex '
+                    alt='Movie Poster' className='mr-3 d-flex '
                     style={{width: 120, height: 180}} rounded
                 />
-                <Card.Text style={{fontSize : 24}} className='text-light'>
+                <Card.Text style={{fontSize : 24}} className='mr-9 text-light'>
                 {`${movie.overview}`}
                 </Card.Text>
             </div>
         </Card.Body>
-        <Card.Body className='mb-3 pt-0'>
+        <Card.Body className='mb-0 pt-0'>
             <p className='text-light'> Rating: {`${movie.vote_average}`}
                 <span className='text-light'> Based on: {`${movie.vote_count}`} votes</span> 
             </p>
@@ -46,7 +46,7 @@ function SearchResult(movie: resultItem) {
             
         </Card.Body>
         <Card.Footer className='d-flex justify-content-start'>
-            <Button variant='danger' className='me-3'>Add to favorites</Button>
+            <Button variant='danger' className='mt-0'>Go to review page</Button>
             <Button variant='secondary'>Find similar movies</Button>
         </Card.Footer>
     </Card>
