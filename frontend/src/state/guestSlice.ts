@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const userSlice = createSlice({
-    name: 'user',
+
+const guestSlice = createSlice({
+    name: 'guest',
     initialState: {
         AboutMe: '',
-        editedText: '',
-        isEditing: false,
-        isFavoritesOpen: false,
         UserName: '',
         Email: '',
         favoriteItems: [],
@@ -14,11 +12,12 @@ const userSlice = createSlice({
         ProfilePicture: '',
     },
     reducers: {
-        setUser: (state, action) => {
+        setOtherUser: (state, action) => {
             // Define actions to update the user state here
             // For example, you might have actions like 'setUser' to update the user data
+
             switch (action.type) {
-                case 'user/setUser':
+                case 'guest/setOtherUser':
 
                     return { ...state, ...action.payload };
                 // Add more actions as needed
@@ -29,6 +28,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { setUser } = userSlice.actions;
+export const { setOtherUser } = guestSlice.actions;
 
-export default userSlice.reducer;
+export default guestSlice.reducer;
