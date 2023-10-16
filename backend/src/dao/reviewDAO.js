@@ -36,4 +36,22 @@ function addReview(PostID, Author, Title, Movie, Comment, DateTime) {
   docClient.put(params).promise();
 }
 
-module.exports = { addReview };
+/**
+ *
+ * @param {String} PostID - string param
+ */
+function getReview(PostID) {
+  const params = {
+    TableName,
+    IndexName: PostID_Index,
+    KeyConditionExpression: '#PostID = :PostID',
+    ExpressionAttributeNames: {
+      '#PostID': 'PostID',
+    },
+    ExpressionAttributeValues: {
+      ':PostID': PostID,
+    },
+  };
+  return docClient.query(params).promise();
+}
+module.exports = { addReview, getReview };
