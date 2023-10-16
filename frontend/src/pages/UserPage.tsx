@@ -4,6 +4,7 @@ import getImagesByID from '../utils/movieUtil.js';
 import { setUser } from '../state/userSlice.js'; // Import your user slice actions
 import { Card, Button, Image, Accordion, ListGroup } from 'react-bootstrap';
 import { RootState } from '../state/store.js';
+import './user.css'
 function UserPage() {
     const user = useSelector((state: RootState) => state.user);
 
@@ -13,7 +14,8 @@ function UserPage() {
 
     const loadFavoriteItems = async (favs: string[]) => {
 
-        const imageUrls = await Promise.all(favs.map(async (item) => getImagesByID(item)));
+        const imageUrls = await Promise.all(favs.map(async (item: string) => getImagesByID(item)));
+        console.log(imageUrls);
         dispatch(setUser({ favoriteItems: imageUrls }));
     };
 
@@ -55,10 +57,11 @@ function UserPage() {
     return (
         <>
             <div className="d-flex flex-column justify-content-center align-items-center">
+                <p id='title'>Your Profile Page</p>
                 <div id="profile-picture">
                     <Image id="profile-circle" src={user.ProfilePicture} alt="profile for user" roundedCircle />
                 </div>
-                <span id="username-box">{user.UserName}</span>
+                <span id="username-box"></span>
             </div>
 
             <div id="container">
@@ -97,11 +100,15 @@ function UserPage() {
                     <Card>
                         <Card.Header>Favorites</Card.Header>
                         <ListGroup>
+
+
                             {user.favoriteItems && user.favoriteItems.length > 0 ? (
                                 user.favoriteItems.map((item: any, index: any) => (
+
                                     <ListGroup.Item key={index}>
-                                        <img id="profile-circle" src={item} alt="Favorite" />
-                                        maybe the movie description
+                                        <p>{item.title}</p>
+                                        <img id="profile-circle" src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="Favorite" />
+                                        <p>{item.overview}</p>
                                     </ListGroup.Item>
                                 ))
                             ) : (

@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { RootState } from '../../state/store';
+import { setOtherUser } from '../../state/guestSlice.js'; // Import your user slice actions
 import './guest.css'
+import getImagesByID from '../../utils/movieUtil.js';
 
 
 import { Card, Button, Image, Accordion, ListGroup, } from 'react-bootstrap'
 
 function GuestProfileView() {
-    const [state, setState] = useState({
-        AboutMe: 'This is my default about me section',
-        editedText: '', // Track edited text
-        isEditing: false, // Track the editing state
-        isFavoritesOpen: false,
-        Favorites: ['movie 1', 'movie 2', 'movie 3', 'movie 4', 'movie 5', 'movie 6', 'movie 7', 'movie 8', 'movie 9'],
-        ProfilePicture: 'https://static.wikia.nocookie.net/characterprofile/images/c/c8/BotW_Link.png',
+    const guest = useSelector((state: RootState) => state.guest);
 
-    });
+    const dispatch = useDispatch();
+
     const { Otherusername } = useParams();
+    console.log(Otherusername);
     const apiUrl = 'http://localhost:9000/user/profile';
+    const loadFavoriteItems = async (favs: string[]) => {
+
+        const imageUrls = await Promise.all(favs.map(async (item: string) => getImagesByID(item)));
+        console.log(imageUrls);
+        dispatch(setOtherUser({ favoriteItems: imageUrls }));
+    };
     useEffect(() => {
         // Define the username you want to retrieve
 
@@ -31,30 +37,29 @@ function GuestProfileView() {
             })
             .then(data => {
                 console.log(data);
-                setState(data); // Update the state with the fetched user data
+                dispatch(setOtherUser(data)); // Update the state with the fetched user data
+                loadFavoriteItems(data.Favorites);
             })
             .catch(error => {
                 console.error('Error:', error); // Handle and display the error to the user
             });
     }, []);
-    const toggleFavoritesAccordion = () => {
-        setState({ ...state, isFavoritesOpen: !state.isFavoritesOpen });
-    };
+
     return (
         <>
 
             <div className="d-flex flex-column justify-content-center align-items-center">
-
+                <p id='title'>{guest.UserName}'s Profile Page</p>
                 <div id="profile-picture">
 
                     <Image
                         id="profile-circle"
-                        src={state.ProfilePicture}
+                        src={guest.ProfilePicture}
                         alt="profile for user"
                         roundedCircle
                     />
                 </div>
-                <span id='username-box'>{Otherusername}</span>
+                <span id='username-box'></span>
             </div>
 
             <div id="container">
@@ -62,11 +67,11 @@ function GuestProfileView() {
                     {/* About Me Section */}
                     <Card>
 
-                        <Card.Header>{Otherusername}'s About Me </Card.Header>
+                        <Card.Header>{guest.UserName}'s About Me </Card.Header>
                         <Card.Body>
                             {/* About Me content */}
                             <p>
-                                {state.AboutMe}
+                                {guest.AboutMe}
                             </p>
 
                         </Card.Body>
@@ -75,27 +80,32 @@ function GuestProfileView() {
 
 
                     {/* Favorites Section */}
-                    <Accordion activeKey={state.isFavoritesOpen ? 'favorites' : undefined}>
-                        <Card>
-                            <Accordion.Item eventKey="favorites">
-                                <Card.Header onClick={toggleFavoritesAccordion} style={{ cursor: 'pointer' }}>
-                                    {Otherusername}'s Favorites
-                                </Card.Header>
-                                <Accordion.Body>
-                                    {/* List of favorites */}
-                                    <ListGroup>
-                                        {state.Favorites.map((item: any, index: any) => (
-                                            <ListGroup.Item key={index}>
-                                                {item}
-                                                <img src="https://static.wikia.nocookie.net/characterprofile/images/c/c8/BotW_Link.png" alt="Favorite" />
-                                                maybe the movie description
-                                            </ListGroup.Item>
-                                        ))}
-                                    </ListGroup>
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        </Card>
-                    </Accordion>
+
+                    <Card>
+
+                        <Card.Header >
+                            {guest.UserName}'s Favorites
+                        </Card.Header>
+
+                        {/* List of favorites */}
+                        <ListGroup>
+                            {guest.favoriteItems && guest.favoriteItems.length > 0 ? (
+                                guest.favoriteItems.map((item: any, index: any) => (
+
+                                    <ListGroup.Item key={index}>
+                                        <p>{item.title}</p>
+                                        <img id='image-circle' src={`https://image.tmdb.org/t/p/original${item.poster_path}`} alt="Favorite" />
+                                        <p>{item.overview}</p>
+                                    </ListGroup.Item>
+                                ))
+                            ) : (
+                                <ListGroup.Item>No favorite items available</ListGroup.Item>
+                            )}
+                        </ListGroup>
+
+
+                    </Card>
+
 
                 </Card>
             </div >

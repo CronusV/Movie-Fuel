@@ -3,8 +3,8 @@ import config from './config.json';
 const key = config.TMDB_accessToken;
 
 async function getImagesByID(id) {
-    const url = `https://api.themoviedb.org/3/movie/${id}/images?include_image_language=en&language=en`;
-
+    // const url = `https://api.themoviedb.org/3/movie/${id}/images?include_image_language=en&language=en`;
+    var url = `https://api.themoviedb.org/3/movie/${id}`;
     try {
         const response = await fetch(url, {
             method: 'GET',
@@ -20,11 +20,9 @@ async function getImagesByID(id) {
 
         const json = await response.json();
 
-        if (json.posters && json.posters.length > 0) {
-            return buildImageURL(json.posters[0].file_path);
-        } else {
-            return ''; // Return an empty string if no image is found
-        }
+
+        return json;
+
     } catch (err) {
         console.error('Error:', err);
         return ''; // Return an empty string on error
