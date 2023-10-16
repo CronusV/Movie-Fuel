@@ -22,5 +22,30 @@ router.get('/profile/:username', async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+router.patch('/profile/Favorites/:username/:id', async (req, res) => {
+    const username = req.params.username;
+    const movieId = req.params.id;
+    console.log(username);
+    console.log(movieId);
 
+    try {
+        const userInfo = await userService.updateFavorites(username, movieId);
+
+        if (userInfo) {
+            res.status(200);
+            res.send({
+                message: "added movie successfully",
+                info: userInfo
+            });
+        } else {
+            res.status(404);
+            res.send({
+                message: "didn't add movie successfully"
+            });
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 module.exports = router;

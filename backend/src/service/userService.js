@@ -10,7 +10,21 @@ async function getProfile(username) {
     return userData.Item;
 
 }
+async function updateFavorites(username, id) {
+    // calls the dao to check login
+    try {
+        const userData = await userDao.addToFavorites(username, id);
+        return 1;
+    } catch (err) {
+        console.error(err);
+    }
 
+
+
+
+
+}
 module.exports = {
-    getProfile
+    getProfile,
+    updateFavorites
 }
