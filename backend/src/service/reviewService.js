@@ -43,7 +43,7 @@ function validatePostID(req) {
   if (!body.PostID || body.PostID === '') {
     validPostID.invalidMessage = 'No PostID attribute, or empty PostID value';
     logger.error(
-      "Coulnd't get because No PostID attribute, or empty PostID value"
+      "Couldn't get because No PostID attribute, or empty PostID value"
     );
     validPostID.valid = false;
   } else {
