@@ -4,12 +4,12 @@ const jwt = require("jsonwebtoken");
 const userDAO = require("../dao/userDAO");
 
 router.post("/register", async (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, email } = req.body;
 
-  if (!username || !password) {
+  if (!username || !password || !email ) {
     return res
       .status(400)
-      .json({ message: "Both username and password are required fields" });
+      .json({ message: "Email, Username and Password are required fields" });
   }
 
   try {
@@ -17,6 +17,8 @@ router.post("/register", async (req, res) => {
     const newUser = {
       username,
       password: hashedPassword,
+      email,
+      role: "user"
     };
 
     await userDAO.addUser(newUser);
