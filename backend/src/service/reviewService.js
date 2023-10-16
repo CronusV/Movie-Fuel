@@ -35,21 +35,4 @@ function validateReview(req) {
   return validReview;
 }
 
-function validatePostID(req) {
-  logger.debug('Attempting to get review');
-  const validPostID = {};
-  const body = req.body;
-  // Input validation
-  if (!body.PostID || body.PostID === '') {
-    validPostID.invalidMessage = 'No PostID attribute, or empty PostID value';
-    logger.error(
-      "Couldn't get because No PostID attribute, or empty PostID value"
-    );
-    validPostID.valid = false;
-  } else {
-    validPostID.valid = true;
-  }
-  return validPostID;
-}
-
-module.exports = { validateReview, validatePostID };
+module.exports = { validateReview };
