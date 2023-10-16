@@ -13,7 +13,7 @@ function validateReview(req) {
 
   // Input validation
   if (!body.Author || body.Author === '') {
-    invalidMessages.push('No attribute Author, or empty Attribute Value');
+    invalidMessages.push('No Author attribute, or empty Author Value');
   }
   if (!body.Title || body.Title === '') {
     invalidMessages.push('No Title attribute, or empty Title value');
@@ -33,6 +33,16 @@ function validateReview(req) {
     validReview.valid = true;
   }
   return validReview;
+}
+
+function validatePostID(req) {
+  logger.debug('Attempting to get review');
+  const validPostID = {};
+  const body = req.body;
+  // Input validation
+  if (!body.PostID || body.PostID === '') {
+    validPostID.invalidMessage = 'No PostID attribute, or empty PostID value';
+  }
 }
 
 module.exports = { validateReview };

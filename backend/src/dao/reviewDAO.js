@@ -7,6 +7,10 @@ AWS.config.update({
 const docClient = new AWS.DynamoDB.DocumentClient();
 // This is table name in dynamoDB
 const TableName = 'MovieFuel-Reviews';
+// GSI for getting specific movie review
+const PostID_Index = 'PostID-index';
+// GSI for sorting by DateTime
+// const dateTimeGSI = 'DateTime-index';
 /**
  *
  * @param {String} PostID - string param
@@ -32,4 +36,22 @@ function addReview(PostID, Author, Title, Movie, Comment, DateTime) {
   docClient.put(params).promise();
 }
 
-module.exports = { addReview };
+/**
+ *
+ * @param {String} PostID - string param
+ */
+function getReview(PostID) {
+  const params = {
+    TableName,
+    IndexName: PostID_Index,
+    KeyConditionExpression: '#PostID = :PostID',
+    ExpressionAttributeName: {
+      '#PostID': 'PostID',
+    },
+    ExpressionAttributeValues: {
+      ':PostID': PostID,
+    },
+  };
+  return docClient.query(params).promise();
+}
+module.exports = { addReview, getReview };
