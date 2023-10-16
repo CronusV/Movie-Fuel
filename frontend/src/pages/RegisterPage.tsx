@@ -32,11 +32,8 @@ const RegisterPage = () => {
         password,
       }).unwrap();
 
-      console.log(accessToken);
-
       dispatch(setCredentials({ accessToken }));
-      
-      console.log("time to redirect");
+    
       navigate("/");
     } catch (error: any) {
       if (!error.status) {

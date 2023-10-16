@@ -23,12 +23,12 @@ router.post("/register", async (req, res) => {
 
     await userDAO.addUser(newUser);
 
-    // create JWTs
-    const accessToken = jwt.sign(
+     // Create JWTs
+     const accessToken = jwt.sign(
       {
         UserInfo: {
-          username: response.Item.username,
-          role: response.Item.role,
+          username: newUser.username,
+          role: newUser.role,
         },
       },
       process.env.ACCESS_TOKEN_SECRET,
@@ -36,7 +36,7 @@ router.post("/register", async (req, res) => {
     );
 
     const refreshToken = jwt.sign(
-      { username: response.Item.username },
+      { username: newUser.username },
       process.env.REFRESH_TOKEN_SECRET,
       { expiresIn: "1d" }
     );
@@ -50,10 +50,7 @@ router.post("/register", async (req, res) => {
     });
 
     // Return the access token
-    res.status(201).json({
-      message: `New user ${username} created successfully`,
-      accessToken,
-    });
+    res.status(201).json({ accessToken });
   } catch (error) {
     if (error.code === "ConditionalCheckFailedException") {
       return res.status(409).json({ message: "Username already exists" });
