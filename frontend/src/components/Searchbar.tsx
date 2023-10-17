@@ -4,7 +4,7 @@
 // import InputGroup from 'react-bootstrap/InputGroup';
 import SearchPage from './searchresults/Search';
 import{Dropdown, DropdownButton, Form, InputGroup} from 'react-bootstrap'
-const props = {text:null,language:"en-US",page:1};
+const props = {text:"frozen",language:"en-US",page:1};
 function ButtonDropdownsExample() {
     let value = '';
     let sort = 'popularity.desc';

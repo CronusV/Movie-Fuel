@@ -3,8 +3,15 @@ const logger = require('./utils/logger');
 // Express
 const express = require('express');
 const myRouter = require("./utils/movieRouter")
-const PORT = 3000;
+const PORT = 4000;
 const server = express();
+// CORS
+const cors = require('cors')
+const corsoptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+}
+server.use(cors(corsoptions))
 // Routers
 const reviewRouter = require('./controllers/reviewsRouter');
 
