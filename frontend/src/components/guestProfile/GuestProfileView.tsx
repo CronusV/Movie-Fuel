@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from '../../state/store';
-import { setOtherUser } from '../../state/guestSlice.js'; // Import your user slice actions
+import { setOtherUser } from '../../state/guestSlice'; // Import your user slice actions
 import './guest.css'
-import getImagesByID from '../../utils/movieUtil.js';
+import getImagesByID from '../../utils/movieUtil';
 
 
 import { Card, Button, Image, Accordion, ListGroup, } from 'react-bootstrap'

@@ -1,24 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { apiSlice } from "./api/apiSlice";
 import userReducer from './userSlice';
 import guestReducer from './guestSlice';
-import { apiSlice } from "./api/apiSlice";
-
 import authReducer from "./auth/authSlice";
-
-
-
 
 export const store = configureStore({
   reducer: {
     [apiSlice.reducerPath]: apiSlice.reducer,
     auth: authReducer,
-    user: userReducer, // Add more reducers as needed
+    user: userReducer,
     guest: guestReducer,
     // Reducers go here
-    // Ex.
-    // reviews: postsReducer,
-    // comments: commentsReducer,
-    // users: usersReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiSlice.middleware),

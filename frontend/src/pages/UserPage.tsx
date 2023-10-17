@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import getImagesByID from '../utils/movieUtil.js';
-import { setUser } from '../state/userSlice.js'; // Import your user slice actions
+import getImagesByID from '../utils/movieUtil';
+import { setUser } from '../state/userSlice'; // Import your user slice actions
 import { Card, Button, Image, Accordion, ListGroup } from 'react-bootstrap';
-import { RootState } from '../state/store.js';
+import { RootState } from '../state/store';
 import './user.css'
 function UserPage() {
     const user = useSelector((state: RootState) => state.user);
