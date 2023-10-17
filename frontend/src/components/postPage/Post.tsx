@@ -1,23 +1,16 @@
 import React from 'react'
 import { Card, Button, Image} from 'react-bootstrap'
-interface postUser {
-    postID: string,
-    author: string,
-    likedBy: string[] | string,
-    likedCount: 3,
-    movie: string,
-    comment: string,
-    dateTime: string
-}
+import { PostInterface } from './postInterface'
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// no movie?
 
-
-function Post() {
+function Post({postID, author, likedBy, likedCount, movie, comment, title, dateTime}: PostInterface) {
 
   return (
-    <Card style={{width: "70rem"}}>
+    <Card style={{width: "100%"}} className='text-dark mb-4 '>
         {/* Card Header */}
         <Card.Header>
-            <Card.Title as="h1">Title of the Post</Card.Title>
+            <Card.Title as="h1">{title}</Card.Title>
             <div className="d-flex justify-content-between">
                 <div className="d-flex">
                     <div className='me-3'>Replies: 10</div>
@@ -36,9 +29,9 @@ function Post() {
                 />
                 
                 <div className='d-flex align-items-center justify-content-center' style={{fontSize:24}}>
-                    <p className='me-3' style={{fontSize:36}}>Username</p>
-                    <p className='me-3'>User ID</p>
-                    <p>Date</p>
+                    <p className='me-3' style={{fontSize:36}}>{author}</p>
+                    <p className='me-3'>{postID}</p>
+                    <p>{dateTime}</p>
                 </div>
             </div>
         </Card.Body>
@@ -46,7 +39,7 @@ function Post() {
         {/* Comment */}
         <Card.Body className='mb-3 pt-0'>
             <Card.Text style={{fontSize : 30}} className='text-start'>
-            This is what I think about the movie. It's ok. Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique officia explicabo error voluptas quo nihil unde distinctio obcaecati facere beatae, velit facilis aperiam molestiae saepe doloremque quia! Deserunt, provident suscipit.
+            {comment}
             </Card.Text>
         </Card.Body>
 
