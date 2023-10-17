@@ -13,12 +13,18 @@ const cors = require("cors");
 const reviewRouter = require("./controllers/reviewsRouter");
 const authRouter = require("./controllers/authRouter");
 const myRouter = require("./utils/movieRouter")
+const userRouter = require("./controllers/userController");
 
 // Define port number
 const PORT = process.env.PORT || 4000;
 
-// Create HTTP server
 const server = express();
+// CORS
+const corsoptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+}
+server.use(cors(corsoptions))
 
 // CORS middleware
 server.use(cors({ allowedOrigins: "*" }));
@@ -34,7 +40,7 @@ server.use(express.urlencoded({ extended: true }));
 server.use('/reviews', reviewRouter);
 server.use('/MovieFuel', myRouter);
 server.use("/auth", authRouter);
-
+server.use('/user', userRouter);
 server.listen(PORT, () => {
   logger.info(`Server is listening on Port: ${PORT}`);
 });
