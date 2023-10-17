@@ -1,17 +1,17 @@
-const AWS = require("aws-sdk");
+const AWS = require('aws-sdk');
 AWS.config.update({
-  region: process.env.AWS_REGION,
+  region: 'us-east-1',
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 
-const TableName = "MovieFuel-Users";
+const TableName = 'MovieFuel-Users';
 
 function addUser(user) {
   const params = {
     TableName,
     Item: user,
-    ConditionExpression: "attribute_not_exists(username)",
+    ConditionExpression: 'attribute_not_exists(username)',
   };
 
   return docClient.put(params).promise();
