@@ -1,6 +1,6 @@
-import config from './config.json';
 
-const key = config.TMDB_accessToken;
+
+const key = process.env.TMDB_accessToken;
 
 async function getImagesByID(id) {
     // const url = `https://api.themoviedb.org/3/movie/${id}/images?include_image_language=en&language=en`;
