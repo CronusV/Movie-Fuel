@@ -1,6 +1,6 @@
 import { original } from '@reduxjs/toolkit'
 import React from 'react'
-import { Card, Button, Image} from 'react-bootstrap'
+import { Card, Button, Image } from 'react-bootstrap'
 interface resultItem {
     adult: boolean,
     backdrop_path: string | null,
@@ -20,6 +20,7 @@ interface resultItem {
 
 
 function SearchResult(movie: resultItem) {
+
 
   return (
     <Card key={movie.id} style={{width: "60rem", backgroundColor: "black"}}>
@@ -51,6 +52,7 @@ function SearchResult(movie: resultItem) {
         </Card.Footer>
     </Card>
   )
+
 }
 
 export default SearchResult
