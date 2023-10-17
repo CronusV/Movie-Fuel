@@ -18,8 +18,14 @@ const userRouter = require("./controllers/userController");
 // Define port number
 const PORT = process.env.PORT || 4000;
 
-// Create HTTP server
 const server = express();
+// CORS
+const cors = require('cors')
+const corsoptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+}
+server.use(cors(corsoptions))
 
 // CORS middleware
 server.use(cors({ allowedOrigins: "*" }));
