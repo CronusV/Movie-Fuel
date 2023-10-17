@@ -1,14 +1,30 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Nav, Navbar, Button } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+import { useSelector } from "react-redux";
+import { RootState } from "../../state/store";
+import { useSendLogoutMutation } from "../../state/auth/authApiSlice";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 
 function Navigation() {
+  const navigate = useNavigate();
+  const [sendLogout, { isLoading, isSuccess, isError, error }] =
+    useSendLogoutMutation();
+
+  const token = useSelector((state: RootState) => state.auth.token); 
+
+  useEffect(() => {
+    if (isSuccess) navigate("/");
+  }, [isSuccess, navigate]);
+
   return (
     <Navbar expand="lg" variant="dark" className="bg-body-tertiary">
       <div className="navbar-items">
-        <Navbar.Brand as={Link} to={"/"}>
-          Movie Fuel
-        </Navbar.Brand>
+        <LinkContainer to="/">
+          <Navbar.Brand as="a">Movie Fuel</Navbar.Brand>
+        </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -18,12 +34,22 @@ function Navigation() {
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-actions">
-          <Button as="a" variant="outline-danger">
-            SIGN IN
-          </Button>
-          <Button as="a" variant="warning">
-            SIGN UP
-          </Button>
+          {token ? (
+            <button onClick={() => sendLogout(null)}>Logout</button>
+          ) : (
+            <>
+              <LinkContainer to="/login">
+                <Button as="a" variant="outline-danger">
+                  SIGN IN
+                </Button>
+              </LinkContainer>
+              <LinkContainer to="/register">
+                <Button as="a" variant="warning">
+                  SIGN UP
+                </Button>
+              </LinkContainer>
+            </>
+          )}
         </div>
       </div>
     </Navbar>
