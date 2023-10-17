@@ -9,3 +9,7 @@ body {
   background-color: black;
   color: white;
 }
+
+.auth-container {
+  max-width: 500px;
+}
