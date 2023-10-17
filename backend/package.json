@@ -11,10 +11,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.8.3",
-    "typescript": "^5.2.2"
-  },
   "dependencies": {
     "aws-sdk": "^2.1472.0",
     "bcrypt": "^5.1.1",
