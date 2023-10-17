@@ -19,7 +19,6 @@ const PORT = process.env.PORT || 4000;
 
 const server = express();
 // CORS
-const cors = require('cors')
 const corsoptions = {
   origin: "*",
   optionsSuccessStatus: 200,
