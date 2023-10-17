@@ -1,9 +1,22 @@
+require("dotenv").config();
 // Logger
-const logger = require('./utils/logger');
+const logger = require("./utils/logger");
 // Express
 const express = require('express');
+
+
+// Third party express middleware
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+
+// Routers
+const reviewRouter = require("./controllers/reviewsRouter");
+const authRouter = require("./controllers/authRouter");
 const myRouter = require("./utils/movieRouter")
-const PORT = 4000;
+
+// Define port number
+const PORT = process.env.PORT || 4000;
+
 const server = express();
 // CORS
 const cors = require('cors')
@@ -12,16 +25,21 @@ const corsoptions = {
   optionsSuccessStatus: 200,
 }
 server.use(cors(corsoptions))
-// Routers
-const reviewRouter = require('./controllers/reviewsRouter');
+
+// CORS middleware
+server.use(cors({ allowedOrigins: "*" }));
+
+// cookie parsing middleware
+server.use(cookieParser());
 
 // middleware to parse JSON from req
-const bodyParser = require('body-parser');
-server.use(bodyParser.json());
+server.use(express.json());
+server.use(express.urlencoded({ extended: true }));
 
 // Using router
 server.use('/reviews', reviewRouter);
 server.use('/MovieFuel', myRouter);
+server.use("/auth", authRouter);
 
 server.listen(PORT, () => {
   logger.info(`Server is listening on Port: ${PORT}`);
