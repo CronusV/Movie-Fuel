@@ -1,21 +1,11 @@
-const AWS = require('aws-sdk');
+const AWS = require("aws-sdk");
 AWS.config.update({
-    region: 'us-east-2'
+    region: process.env.AWS_REGION,
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
+const TableName = "MovieFuel-Users";
 
-function retrieveByUsername(username) {
-
-    const params = {
-        TableName: 'MovieFuel-Users',
-        Key: {
-            'UserName': username
-        }
-    };
-
-    return docClient.get(params).promise();
-}
 function addToFavorites(username, id) {
 
     const params = {
@@ -47,7 +37,27 @@ function addToFavorites(username, id) {
         });
 }
 
-module.exports = {
-    retrieveByUsername,
-    addToFavorites
+function addUser(user) {
+    const params = {
+        TableName,
+        Item: user,
+        ConditionExpression: "attribute_not_exists(username)",
+    };
+
+    return docClient.put(params).promise();
 }
+
+function getUser(username) {
+    const params = {
+        TableName,
+        Key: { username },
+    };
+
+    return docClient.get(params).promise();
+}
+
+module.exports = {
+    addUser,
+    getUser,
+    addToFavorites
+};
