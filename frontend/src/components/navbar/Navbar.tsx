@@ -12,6 +12,7 @@ function Navigation() {
           <Nav className="me-auto">
             <Nav.Link href="#home">Movies</Nav.Link>
             <Nav.Link href="#link">Reviews</Nav.Link>
+            <Nav.Link href="/Search">Search</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-actions">

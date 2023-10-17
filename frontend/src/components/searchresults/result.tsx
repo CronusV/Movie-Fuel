@@ -3,7 +3,7 @@ import React from 'react'
 import { Card, Button, Image} from 'react-bootstrap'
 interface resultItem {
     adult: boolean,
-    backdrop_path: string,
+    backdrop_path: string | null,
     genre_ids: number[] | number,
     id: number,
     original_language: string,
@@ -22,7 +22,7 @@ interface resultItem {
 function SearchResult(movie: resultItem) {
 
   return (
-    <Card style={{width: "60rem", backgroundColor: "black"}}>
+    <Card key={movie.id} style={{width: "60rem", backgroundColor: "black"}}>
         {/* Card Header */}SearchResult
         <Card.Header>
             <Card.Title as="h3" className='text-light'>{`${movie.original_title}`}</Card.Title>
