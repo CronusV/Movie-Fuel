@@ -9,17 +9,16 @@ import UserPage from "./pages/UserPage";
 import GuestPage from "./components/guestProfile/GuestProfileView";
 import PostPage from "./components/postPage/Post";
 
-const props = {text:"barbie",language:"en-US",page:1}
+const props = { text: "barbie", language: "en-US", page: 1 };
 
 function App() {
   return (
     <Container>
       <Navbar />
 
-
       <Routes>
-        <Route path="/Search" element={<SearchPagePage />}/>
         <Route path="/" element={<HomePage />} />
+        <Route path="/Search" element={<SearchPagePage />} />
         <Route path="/profile" element={<UserPage />} />
         <Route path="/guest-profile/:Otherusername" element={<GuestPage />} />
         <Route path="/post" element={<PostPage />} />
