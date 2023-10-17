@@ -49,8 +49,10 @@ function addUser(user) {
 
 function getUser(username) {
     const params = {
-        TableName,
-        Key: { username },
+        TableName: 'MovieFuel-Users',
+        Key: {
+            username
+        }
     };
 
     return docClient.get(params).promise();

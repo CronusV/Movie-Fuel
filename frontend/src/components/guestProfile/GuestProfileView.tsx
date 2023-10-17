@@ -16,7 +16,7 @@ function GuestProfileView() {
 
     const { Otherusername } = useParams();
     console.log(Otherusername);
-    const apiUrl = 'http://localhost:9000/user/profile';
+    const apiUrl = 'http://localhost:4000/user/profile';
     const loadFavoriteItems = async (favs: string[]) => {
 
         const imageUrls = await Promise.all(favs.map(async (item: string) => getImagesByID(item)));
