@@ -3,23 +3,23 @@ import { Container } from "react-bootstrap";
 import Navbar from "./components/navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
-
-import SearchPagePage from "./pages/SearchPage";
-const props = {text:"barbie",language:"en-US",page:1}
-
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import GuestProfileView from "./components/guestProfile/GuestProfileView";
+import SearchPagePage from "./pages/SearchPage";
+import UserPage from "./pages/UserPage";
+import GuestPage from "./components/guestProfile/GuestProfileView";
+import PostPage from "./components/postPage/Post";
+
+const props = { text: "barbie", language: "en-US", page: 1 };
 
 function App() {
   return (
     <Container>
       <Navbar />
 
-
       <Routes>
-        <Route path="/Search" element={<SearchPagePage />}/>
         <Route path="/" element={<HomePage />} />
+        <Route path="/Search" element={<SearchPagePage />} />
         <Route path="/profile" element={<UserPage />} />
         <Route path="/guest-profile/:Otherusername" element={<GuestProfileView />} />
         <Route path="/login" element={<LoginPage />} />
