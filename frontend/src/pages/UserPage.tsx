@@ -10,7 +10,7 @@ function UserPage() {
 
     const dispatch = useDispatch();
 
-    const apiUrl = 'http://localhost:9000/user/profile';
+    const apiUrl = 'http://localhost:4000/user/profile';
 
     const loadFavoriteItems = async (favs: string[]) => {
 

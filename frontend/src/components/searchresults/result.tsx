@@ -48,7 +48,7 @@ function SearchResult(movie: resultItem) {
             <Card.Footer className='d-flex justify-content-start'>
                 <Button variant='danger' className='mt-0'>Go to review page</Button>
                 <Button variant='secondary'>Find similar movies</Button>
-                <Button variant='secondary' onClick={addtoFavorites(movie.id)}>add to Favorites</Button>
+                <Button variant='secondary' >add to Favorites</Button>
             </Card.Footer>
         </Card>
     )

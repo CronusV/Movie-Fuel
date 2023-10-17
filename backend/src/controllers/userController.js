@@ -25,8 +25,7 @@ router.get('/profile/:username', async (req, res) => {
 router.patch('/profile/Favorites/:username/:id', async (req, res) => {
     const username = req.params.username;
     const movieId = req.params.id;
-    console.log(username);
-    console.log(movieId);
+
 
     try {
         const userInfo = await userService.updateFavorites(username, movieId);
