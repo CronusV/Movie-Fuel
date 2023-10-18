@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import getImagesByID from '../utils/movieUtil';
+
 import { setUser } from '../state/userSlice'; // Import your user slice actions
 import { Card, Button, Image, Accordion, ListGroup } from 'react-bootstrap';
 import { RootState } from '../state/store';
 import './user.css'
+import axios from 'axios';
 function UserPage() {
     const user = useSelector((state: RootState) => state.user);
 
@@ -14,10 +15,19 @@ function UserPage() {
 
     const loadFavoriteItems = async (favs: string[]) => {
 
-        const imageUrls = await Promise.all(favs.map(async (item: string) => getImagesByID(item)));
+        const imageUrls = await Promise.all(
+            favs.map(async (item) => {
+                // Use axios.get to perform the GET request
+                const response = await axios.get(`http://127.0.0.1:4000/MovieFuel/search/byID?idnumber=${item}`, {
+                    withCredentials: false,
+                });
+                return response.data; // Extract data from the Axios response
+            })
+        );
         console.log(imageUrls);
         dispatch(setUser({ favoriteItems: imageUrls }));
     };
+
 
     useEffect(() => {
         const usernameToRetrieve = 'danny007';
