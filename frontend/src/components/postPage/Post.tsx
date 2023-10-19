@@ -1,16 +1,17 @@
 import React from 'react'
 import { Card, Button, Image} from 'react-bootstrap'
 import { PostInterface } from './postInterface'
+import { Review } from '../../types/Review'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // no movie?
 
-function Post({postID, author, likedBy, likedCount, movie, comment, title, dateTime}: PostInterface) {
+function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime}: Review) {
 
   return (
     <Card style={{width: "100%"}} className='text-dark mb-4 '>
         {/* Card Header */}
         <Card.Header>
-            <Card.Title as="h1">{title}</Card.Title>
+            <Card.Title as="h1">{Title}</Card.Title>
             <div className="d-flex justify-content-between">
                 <div className="d-flex">
                     <div className='me-3'>Replies: 10</div>
@@ -29,9 +30,9 @@ function Post({postID, author, likedBy, likedCount, movie, comment, title, dateT
                 />
                 
                 <div className='d-flex align-items-center justify-content-center' style={{fontSize:24}}>
-                    <p className='me-3' style={{fontSize:36}}>{author}</p>
-                    <p className='me-3'>{postID}</p>
-                    <p>{dateTime}</p>
+                    <p className='me-3' style={{fontSize:36}}>{Author}</p>
+                    <p className='me-3'>{PostID}</p>
+                    <p>{DateTime}</p>
                 </div>
             </div>
         </Card.Body>
@@ -39,14 +40,14 @@ function Post({postID, author, likedBy, likedCount, movie, comment, title, dateT
         {/* Comment */}
         <Card.Body className='mb-3 pt-0'>
             <Card.Text style={{fontSize : 30}} className='text-start'>
-            {comment}
+            {Comment}
             </Card.Text>
         </Card.Body>
 
             {/* Footer */}
             <Card.Footer className='d-flex justify-content-start'>
                 <Button variant='primary' className='me-3'>Reply</Button>
-                <Button variant='secondary'>Like</Button>
+                <Button variant='secondary'>Likes {Likes}</Button>
             </Card.Footer>
         </Card>
     )
