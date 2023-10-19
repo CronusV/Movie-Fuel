@@ -30,6 +30,8 @@ function Navigation() {
           <Nav className="me-auto">
             <Nav.Link href="#movies">Movies</Nav.Link>
             <Nav.Link href="#link">Reviews</Nav.Link>
+            <Nav.Link href="/Search">Search</Nav.Link>
+
             <Nav.Link as={Link} to={"/postTest"}>PostTest</Nav.Link>
           </Nav>
         </Navbar.Collapse>

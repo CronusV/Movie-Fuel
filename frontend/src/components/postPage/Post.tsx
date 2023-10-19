@@ -43,13 +43,13 @@ function Post({postID, author, likedBy, likedCount, movie, comment, title, dateT
             </Card.Text>
         </Card.Body>
 
-        {/* Footer */}
-        <Card.Footer className='d-flex justify-content-start'>
-            <Button variant='primary' className='me-3'>Reply</Button>
-            <Button variant='secondary'>Like</Button>
-        </Card.Footer>
-    </Card>
-  )
+            {/* Footer */}
+            <Card.Footer className='d-flex justify-content-start'>
+                <Button variant='primary' className='me-3'>Reply</Button>
+                <Button variant='secondary'>Like</Button>
+            </Card.Footer>
+        </Card>
+    )
 }
 
 export default Post
