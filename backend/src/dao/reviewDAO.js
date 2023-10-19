@@ -56,4 +56,10 @@ function getReview(PostID) {
   return docClient.query(params).promise();
 }
 
-module.exports = { addReview, getReview };
+function getAllReviews() {
+  const params = {
+    TableName: ReviewsTable,
+  };
+  return docClient.scan(params).promise();
+}
+module.exports = { addReview, getReview, getAllReviews };
