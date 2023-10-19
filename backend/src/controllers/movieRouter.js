@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const logic = require('../service/movieUtil');
+const logic = require('../utils/movieUtil');
 
 router.get('/discover', (req, res) => {
     const include = (req.query.include);
