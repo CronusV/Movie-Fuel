@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const userDAO = require("../dao/userDAO");
+require('dotenv').config({ path: require('find-config')('.env') });
 
 router.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
