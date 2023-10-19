@@ -10,7 +10,7 @@ import SearchPagePage from "./pages/SearchPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { Review } from "./types/Review";
-const props = {text:"barbie",language:"en-US",page:1}
+// const props = {text:"barbie",language:"en-US",page:1}
 
 const testPost: Review = {
   PostID: "1",
