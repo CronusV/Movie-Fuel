@@ -5,10 +5,11 @@ const logger = require('../utils/logger');
 const reviewService = require('../service/reviewService');
 const reviewDAO = require('../dao/reviewDAO');
 const likeDAO = require('../dao/likeDAO');
+const verifyJWT = require('../middleware/verifyJWT');
 
 // This adds post to reviews resource
-// TODO MiddleWare to validate user
-router.post('/', async (req, res) => {
+
+router.post('/', verifyJWT, async (req, res) => {
   const body = req.body;
   // Test review
   const validateReview = reviewService.validateReview(req);
@@ -22,7 +23,7 @@ router.post('/', async (req, res) => {
   try {
     const dataReview = await reviewDAO.addReview(
       postID,
-      body.Author,
+      req.username,
       body.Title,
       body.Movie,
       body.Comment,
@@ -40,6 +41,22 @@ router.post('/', async (req, res) => {
     res.status(500).send({ message: 'Failed to add review to database' });
   }
 });
+// Gets all reviews resource
+router.get('/', async (req, res) => {
+  try {
+    const getAllData = await reviewDAO.getAllReviews();
+    logger.info(
+      `Successful GET from dynamoDB ${JSON.stringify(getAllData.Items)}`
+    );
+    res
+      .status(200)
+      .send({ message: 'Successful GET from dynamoDB', data: getAllData });
+  } catch (err) {
+    logger.info(`Failed to get from dynamoDB: ${err}`);
+    res.status(500).send({ message: `Failed to get from dynamoDB: ${err}` });
+  }
+});
+
 // gets revies by postID resource
 // Shouldn't need to validate user for this
 router.get('/:PostID', async (req, res) => {
