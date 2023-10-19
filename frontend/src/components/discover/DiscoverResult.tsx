@@ -20,7 +20,7 @@ interface resultItem {
 }
 
 
-function SearchResult(movie: resultItem) {
+function DiscoverResult(movie: resultItem) {
 
 
   return (
@@ -60,4 +60,4 @@ function SearchResult(movie: resultItem) {
 
 }
 
-export default SearchResult
+export default DiscoverResult

@@ -4,9 +4,12 @@
 // import InputGroup from 'react-bootstrap/InputGroup';
 import SearchPage from './searchresults/Search';
 import React, { useState } from 'react'
-import{Dropdown, DropdownButton, Form, InputGroup} from 'react-bootstrap'
+import{ Dropdown, DropdownButton, Form, InputGroup } from 'react-bootstrap'
+import { useParams } from 'react-router-dom';
 function ButtonDropdownsExample() {
-  const [query, setQuery] = React.useState("barbie");
+  const initialSearch = useParams();
+  console.log(initialSearch);
+  const [query, setQuery] = React.useState(initialSearch.searchtext);
   const [currentPage, setCurrentPage] = React.useState(1);
   function nextpage(){
     setCurrentPage(currentPage + 1)
@@ -34,20 +37,6 @@ function ButtonDropdownsExample() {
     <>
       <InputGroup className="w-50 p-3">
       <form className="d-flex" onSubmit={onSubmit}>
-        <DropdownButton
-          variant="danger"
-          title="Sort by"
-          id="input-group-dropdown-1"
-          onChange={dropDownClick}
-        >
-          <Dropdown.Item onClick={dropDownClick} href="#" id='revenue.desc'>revenue descending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='revenue.asc'>revenue ascending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='popularity.desc'>popularity descending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='popularity.asc'>popularity ascending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='rating.desc'>rating descending</Dropdown.Item>
-          <Dropdown.Item onClick={dropDownClick} href="#" id='rating.asc'>rating ascending</Dropdown.Item>
-        </DropdownButton>
-        
             <input type='text' className='form-control' placeholder="Search movies" onChange={onChange}></input>
             <input type="btn" id='submitfire' className='btn btn-danger' value='Go' onClick={onSubmit}></input>
         </form>

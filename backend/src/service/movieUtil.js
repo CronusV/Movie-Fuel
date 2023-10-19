@@ -43,9 +43,10 @@ function searchDataBaseByID(id) {
     return (data);
 }
 // filtered search
-function filteredSearchSimple(genresInclude, genresExclude,sortBy, page) {
+function filteredSearchSimple(genresInclude, genresExclude, sortBy, sortdir, page) {
     var fetch = require('node-fetch');
-    var url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&with_genres=${genresInclude}&without_genres=${genresExclude}&sort_by=${sortBy}`;
+    console.log(String(sortBy))
+    var url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&with_genres=${genresInclude}&without_genres=${genresExclude}&sort_by=${sortBy}.${sortdir}`;
     console.log(url);
     var options = {
         method: 'GET',
