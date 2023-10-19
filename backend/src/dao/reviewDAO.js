@@ -31,6 +31,7 @@ function addReview(PostID, Author, Title, Movie, Comment, DateTime) {
       Movie,
       Comment,
       DateTime,
+      Likes: 0,
     },
   };
   return docClient.put(params).promise();
