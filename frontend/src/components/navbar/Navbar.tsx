@@ -30,7 +30,7 @@ function Navigation() {
             <Nav.Link href="#home">Movies</Nav.Link>
 
             <Nav.Link href="#link">Reviews</Nav.Link>
-            <Nav.Link href="/Search">Search</Nav.Link>
+            <Nav.Link href="/Search/Barbie">Search</Nav.Link>
 
           </Nav>
         </Navbar.Collapse>
