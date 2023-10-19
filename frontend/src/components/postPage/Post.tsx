@@ -1,10 +1,14 @@
 import React from 'react'
 import { Card, Button, Image} from 'react-bootstrap'
-import { PostInterface } from './postInterface'
 import { Review } from '../../types/Review'
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // no movie?
-
+function scrollToBottom() {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: 'smooth'
+    });
+}
 function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime}: Review) {
 
   return (
@@ -17,7 +21,7 @@ function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime}: Review) 
                     <div className='me-3'>Replies: 10</div>
                     <div>Particpiants: 3</div>
                 </div>
-                <Button variant='primary'>Go to most recent!</Button>
+                <Button variant='primary' onClick={scrollToBottom}>Go to most recent!</Button>
             </div>
         </Card.Header>
         {/* This is the user section */}
