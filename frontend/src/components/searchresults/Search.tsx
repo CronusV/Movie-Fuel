@@ -50,7 +50,6 @@ function SearchPage(props:query){
           url: urltext,
           withCredentials: false
         })
-        console.log(response) 
 
         // After fetching data stored it in posts state. 
         setMovies(response.data.results); 
@@ -61,7 +60,7 @@ function SearchPage(props:query){
 
     // Call the function 
     loadMovies(); 
-}, []); 
+}, [props.text,props.page]); 
       return(
       <> 
         <div className="App"> 

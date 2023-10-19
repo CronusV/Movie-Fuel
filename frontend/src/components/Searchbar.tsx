@@ -3,12 +3,23 @@
 // import Form from 'react-bootstrap/Form';
 // import InputGroup from 'react-bootstrap/InputGroup';
 import SearchPage from './searchresults/Search';
+import React, { useState } from 'react'
 import{Dropdown, DropdownButton, Form, InputGroup} from 'react-bootstrap'
-const props = {text:"frozen",language:"en-US",page:1};
 function ButtonDropdownsExample() {
+  const [query, setQuery] = React.useState("barbie");
+  const [currentPage, setCurrentPage] = React.useState(1);
+  function nextpage(){
+    setCurrentPage(currentPage + 1)
+  }
+  function prevpage(){
+    if(currentPage > 1){
+      setCurrentPage(currentPage - 1)
+    }
+  }
     let value = '';
     let sort = 'popularity.desc';
     function onSubmit(){
+        setQuery(value);
         console.log(value)
     }
     function onChange(event:any){
@@ -38,10 +49,14 @@ function ButtonDropdownsExample() {
         </DropdownButton>
         
             <input type='text' className='form-control' placeholder="Search movies" onChange={onChange}></input>
-            <input type="submit" id='submitfire' className='btn btn-danger' value='Go' onClick={onSubmit}></input>
+            <input type="btn" id='submitfire' className='btn btn-danger' value='Go' onClick={onSubmit}></input>
         </form>
       </InputGroup>
-      <SearchPage {...props}></SearchPage>
+      <SearchPage text={query} language="en-US" page={currentPage}></SearchPage>
+      
+      <input type="btn" className='btn btn-danger' id="prevPageButton" value="Previous Page" onClick={prevpage}></input>
+      <span>Page:{currentPage}</span>
+      <input type="btn" className='btn btn-danger' id="nextPageButton" value="Next Page" onClick={nextpage}></input>
     </>
   );
 }
