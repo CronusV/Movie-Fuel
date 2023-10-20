@@ -1,6 +1,9 @@
-import React from 'react'
-import { Card, Button, Image} from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Card, Button, Image, Alert} from 'react-bootstrap'
 import { Review } from '../../types/Review'
+import ReplyForm from './ReplyForm';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../state/store';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // no movie?
 function scrollToBottom() {
@@ -9,8 +12,21 @@ function scrollToBottom() {
       behavior: 'smooth'
     });
 }
-function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime}: Review) {
 
+function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime, replies}: Review & {replies: number}) {
+    const props: Review = { PostID, Author, Likes, Movie, Comment, Title, DateTime};
+    const [showReplyForm, setShowReplyForm] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const token = useSelector((state: RootState) => state.auth.token);
+    const handleReplyClick = () => {
+        if(token) {
+            setShowReplyForm(!showReplyForm);
+        } else {
+            setShowAlert(true);
+        }
+    }
+    
+    const date = new Date(DateTime);
   return (
     <Card style={{width: "100%"}} className='text-dark mb-4 '>
         {/* Card Header */}
@@ -18,10 +34,10 @@ function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime}: Review) 
             <Card.Title as="h1">{Title}</Card.Title>
             <div className="d-flex justify-content-between">
                 <div className="d-flex">
-                    <div className='me-3'>Replies: 10</div>
-                    <div>Particpiants: 3</div>
+                    <div className='me-3'>Replies: {replies}</div>
                 </div>
                 <Button variant='primary' onClick={scrollToBottom}>Go to most recent!</Button>
+                
             </div>
         </Card.Header>
         {/* This is the user section */}
@@ -34,9 +50,9 @@ function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime}: Review) 
                 />
                 
                 <div className='d-flex align-items-center justify-content-center' style={{fontSize:24}}>
-                    <p className='me-3' style={{fontSize:36}}>{Author}</p>
-                    <p className='me-3'>{PostID}</p>
-                    <p>{DateTime}</p>
+                    <p className='me-3' style={{fontSize:36, fontWeight:700}}>{Author}</p>
+                    <p className='me-3' style={{fontSize:15.5}}>{PostID.slice(0,8)}</p>
+                    <p style={{fontSize:15.5}}>{date.toUTCString()}</p>
                 </div>
             </div>
         </Card.Body>
@@ -50,8 +66,11 @@ function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime}: Review) 
 
             {/* Footer */}
             <Card.Footer className='d-flex justify-content-start'>
-                <Button variant='primary' className='me-3'>Reply</Button>
+                <Button variant='primary' className='me-3' onClick={handleReplyClick}>Reply</Button>
                 <Button variant='secondary'>Likes {Likes}</Button>
+            </Card.Footer>
+            <Card.Footer><Alert variant='info' show={showAlert} onClose={() => setShowAlert(false)} dismissible> Can't reply to post unless you log in!</Alert>
+                {showReplyForm ? <ReplyForm {...props}/> : null}
             </Card.Footer>
         </Card>
     )
