@@ -7,7 +7,7 @@ const userDAO = require("../dao/userDAO");
 router.post("/register", async (req, res) => {
   const { username, password, email } = req.body;
 
-  if (!username || !password || !email ) {
+  if (!username || !password || !email) {
     return res
       .status(400)
       .json({ message: "Email, Username and Password are required fields" });
@@ -24,8 +24,8 @@ router.post("/register", async (req, res) => {
 
     await userDAO.addUser(newUser);
 
-     // Create JWTs
-     const accessToken = jwt.sign(
+    // Create JWTs
+    const accessToken = jwt.sign(
       {
         UserInfo: {
           username: newUser.username,
