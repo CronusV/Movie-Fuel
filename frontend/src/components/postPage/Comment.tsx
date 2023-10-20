@@ -6,12 +6,11 @@ import { CommentType } from '../../types/Comment';
 import ReplyCard from './ReplyCard';
 
 
-
-function Comment({PostID, Comment, ReplyID, Author, DateTime, Likes, ReplyToID}: CommentType
+function Comment({PostID, Comment, ReplyID, Author, DateTime, Likes, ReplyToID, comments, setComments}: CommentType
     & {comments: CommentType[], setComments: React.Dispatch<React.SetStateAction<CommentType[]>>}) {
     const token = useSelector((state: RootState) => state.auth.token);
     const date = new Date(DateTime);
-
+    
   return (
     <Card style={{width: "100%"}} className='text-dark mb-5'>
         {/* Card Header */}
@@ -36,7 +35,7 @@ function Comment({PostID, Comment, ReplyID, Author, DateTime, Likes, ReplyToID}:
 
         {/* Comment */}
         <Card.Body className='mb-3 pt-0'>
-            {ReplyToID ? <ReplyCard ReplyID={ReplyToID} /> : null}
+            {ReplyToID ? <ReplyCard ReplyID={ReplyToID} comments={comments} setComments={setComments} /> : null}
             <Card.Text style={{fontSize :14}} className='text-start'>
             {Comment}
             </Card.Text>

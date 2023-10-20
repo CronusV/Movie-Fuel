@@ -4,6 +4,7 @@ import { Review } from '../../types/Review'
 import ReplyForm from './ReplyForm';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
+import { CommentType } from '../../types/Comment';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // no movie?
 function scrollToBottom() {
@@ -13,7 +14,9 @@ function scrollToBottom() {
     });
 }
 
-function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime, replies}: Review & {replies: number}) {
+function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime, replies, comments, setComments}: Review 
+    & {replies: number, comments: CommentType[], setComments: React.Dispatch<React.SetStateAction<CommentType[]>>}) {
+   
     const props: Review = { PostID, Author, Likes, Movie, Comment, Title, DateTime};
     const [showReplyForm, setShowReplyForm] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
@@ -70,7 +73,7 @@ function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime, replies}:
                 <Button variant='secondary'>Likes {Likes}</Button>
             </Card.Footer>
             <Card.Footer><Alert variant='info' show={showAlert} onClose={() => setShowAlert(false)} dismissible> Can't reply to post unless you log in!</Alert>
-                {showReplyForm ? <ReplyForm {...props}/> : null}
+                {showReplyForm ? <ReplyForm {...props} comments={comments} setComments={setComments} showReplyForm={showAlert} setShowReplyForm={setShowReplyForm}/> : null}
             </Card.Footer>
         </Card>
     )

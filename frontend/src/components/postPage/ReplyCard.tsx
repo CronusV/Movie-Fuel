@@ -10,7 +10,8 @@ type response = {
         data: CommentType[]
     }
 }
-function ReplyCard({ReplyID}: {ReplyID: string}) {
+function ReplyCard({ReplyID}: {ReplyID: string} & 
+    {comments: CommentType[], setComments: React.Dispatch<React.SetStateAction<CommentType[]>>}) {
     // Find the comment that this is replying to
     const [fetchComment] = useGetCommentFromReplyIDMutation();
     const [comment, setComment] = React.useState<CommentType>();
