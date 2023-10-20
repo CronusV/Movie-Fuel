@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import { useSendLogoutMutation } from "../../state/auth/authApiSlice";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+
 
 function Navigation() {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ function Navigation() {
 
             <Nav.Link href="#link">Reviews</Nav.Link>
             <Nav.Link as={Link} to="/Search/Barbie">Search</Nav.Link>
-            <Nav.Link as={Link} to="/Profile">Profile</Nav.Link>
+
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-actions">
