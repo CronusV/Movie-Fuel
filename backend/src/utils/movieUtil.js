@@ -1,13 +1,13 @@
 require('dotenv').config({ path: require('find-config')('.env') });
-
+var key = process.env.TMDB_accessToken;
 const baseURL = "https://api.themoviedb.org/3/movie";
 const imagePath = "https://image.tmdb.org/t/p/original";
 const tmdbHeaders = {
   accept: "application/json",
-  Authorization: process.env.TMDB_KEY,
+  Authorization: "Bearer "+key,
 };
 
-const getNowPlayingMovies = async (req, res) => {
+async function getNowPlayingMovies(){
   const path = "/now_playing?language=en-US&page=1";
   const options = {
     method: "GET",
@@ -22,10 +22,10 @@ const getNowPlayingMovies = async (req, res) => {
       result.poster_path = imagePath + result.poster_path;
       return result;
     });
-    return res.status(200).json(movies);
+    return (movies);
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Something went wrong" });
+    return ({ message: "Something went wrong" });
   }
 };
 
