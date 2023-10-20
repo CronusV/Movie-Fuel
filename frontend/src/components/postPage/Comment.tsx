@@ -1,16 +1,28 @@
-import React from 'react'
-import { Card, Button, Image} from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Card, Button, Image, Alert} from 'react-bootstrap'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
 import { CommentType } from '../../types/Comment';
 import ReplyCard from './ReplyCard';
+import ReplyFormComment from './ReplyFormComment';
+import { Review } from '../../types/Review';
 
 
 function Comment({PostID, Comment, ReplyID, Author, DateTime, Likes, ReplyToID, comments, setComments}: CommentType
     & {comments: CommentType[], setComments: React.Dispatch<React.SetStateAction<CommentType[]>>}) {
+
+    const props: CommentType = { PostID, Author, Likes, Comment, DateTime, ReplyID, ReplyToID};
+    const [showAlert, setShowAlert] = useState(false);
+    const [showReplyForm, setShowReplyForm] = useState(false);
     const token = useSelector((state: RootState) => state.auth.token);
     const date = new Date(DateTime);
-    
+    const handleReplyClick = () => {
+        if(token) {
+            setShowReplyForm(!showReplyForm);
+        } else {
+            setShowAlert(true);
+        }
+    }
   return (
     <Card style={{width: "100%"}} className='text-dark mb-5'>
         {/* Card Header */}
@@ -43,8 +55,11 @@ function Comment({PostID, Comment, ReplyID, Author, DateTime, Likes, ReplyToID, 
 
         {/* Footer */}
         <Card.Footer className='d-flex justify-content-start'>
-            <Button variant='primary' className='me-3'>Reply</Button>
+            <Button variant='primary' className='me-3' onClick={handleReplyClick}>Reply</Button>
             <Button variant='secondary'>Likes {Likes}</Button>
+        </Card.Footer>
+        <Card.Footer><Alert variant='info' show={showAlert} onClose={() => setShowAlert(false)} dismissible> Can't reply to comment unless you log in!</Alert>
+                {showReplyForm ? <ReplyFormComment {...props} comments={comments} setComments={setComments} showReplyForm={showReplyForm} setShowReplyForm={setShowReplyForm}/> : null}
         </Card.Footer>
     </Card>
   )

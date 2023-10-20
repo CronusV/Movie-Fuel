@@ -33,6 +33,7 @@ function Navigation() {
             <Nav.Link href="/Search">Search</Nav.Link>
 
             <Nav.Link as={Link} to={"/postTest"}>PostTest</Nav.Link>
+            <Nav.Link as={Link} to={"/reviewHome"}>ReviewHome</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-actions">

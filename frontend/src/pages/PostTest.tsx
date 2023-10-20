@@ -60,9 +60,9 @@ function PostTest({...props}: Review) {
   
   console.log(data);
   console.log("this is the comments",JSON.stringify(data.data.data))
-  let regularComments = Array.from(data.data.data);
+  let regularComments = Array.from(data.data.data).sort((a, b) => new Date(a.DateTime).getTime() - new Date(b.DateTime).getTime());
   // Put comments from oldest to newest
-  setComments(regularComments.reverse());
+  setComments(regularComments);
  }
 //  console.log(data);
   return (

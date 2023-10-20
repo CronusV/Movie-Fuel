@@ -10,10 +10,11 @@ import SearchPagePage from "./pages/SearchPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { Review } from "./types/Review";
+import ReviewHome from "./pages/ReviewHome";
 // const props = {text:"barbie",language:"en-US",page:1}
 
 const testPost: Review = {
-  PostID: "1",
+  PostID: "7e67ace3-1206-4ee2-b7d8-55c81da9ae8e",
   Author: "alex",
   Comment: "This is what I think about the movie",
   Title: "Its alright",
@@ -37,6 +38,7 @@ function App() {
         {/* <Route path="/post" element={<PostPage />} /> */}
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/reviewHome" element={<ReviewHome/>} />
       </Routes>
     </Container>
   );
