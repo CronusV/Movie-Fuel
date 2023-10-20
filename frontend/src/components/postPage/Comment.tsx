@@ -5,7 +5,6 @@ import { RootState } from '../../state/store';
 import { CommentType } from '../../types/Comment';
 import ReplyCard from './ReplyCard';
 import ReplyFormComment from './ReplyFormComment';
-import { Review } from '../../types/Review';
 
 
 function Comment({PostID, Comment, ReplyID, Author, DateTime, Likes, ReplyToID, comments, setComments}: CommentType
