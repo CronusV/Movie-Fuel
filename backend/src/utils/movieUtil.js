@@ -1,6 +1,5 @@
 // require('dotenv').config({ path: require('find-config')('.env') });
-var key =
-  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YzVkZjg3OTZlMTlhMjk2Y2M0YjY1MjgyODVjYTQ4NyIsInN1YiI6IjYxODljYjAwZTc0MTQ2MDAyYjdiMGU0MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.PKaa-B8L_Q5wuN5LQPQ7RNjbqqh4fkCGwnBvqLjKges';
+var key = process.env.TMDB_accessToken;
 console.log(`this is the key ${key}`);
 const baseURL = 'https://api.themoviedb.org/3/movie';
 const imagePath = 'https://image.tmdb.org/t/p/original';
