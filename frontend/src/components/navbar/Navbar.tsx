@@ -30,7 +30,7 @@ function Navigation() {
             <Nav.Link href="#home">Movies</Nav.Link>
 
             <Nav.Link href="#link">Reviews</Nav.Link>
-            <Nav.Link as={Link} to="/Search">Search</Nav.Link>
+            <Nav.Link as={Link} to="/Search/Barbie">Search</Nav.Link>
             <Nav.Link as={Link} to="/Profile">Profile</Nav.Link>
           </Nav>
         </Navbar.Collapse>

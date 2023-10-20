@@ -1,9 +1,8 @@
-import { original } from '@reduxjs/toolkit'
-import React from 'react'
+
 import { Card, Button, Image } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 
-import { addToFavorites } from '../../state/userSlice'; // Import your user slice actions
 import axios from 'axios';
 interface resultItem {
     adult: boolean,
@@ -68,8 +67,12 @@ function SearchResult(movie: resultItem) {
 
             </Card.Body>
             <Card.Footer className='d-flex justify-content-start'>
-                <Button variant='danger' className='mt-0'>Go to review page</Button>
-                <Button variant='secondary'>Find similar movies</Button>
+                <Link to={`/movies/${movie.id}`}>
+                    <Button variant='danger' className='mt-0'>Go to review page</Button>
+                </Link>
+                <Link to={`/discover/${movie.genre_ids}`}>
+                    <Button variant='secondary'>Find similar movies</Button>
+                </Link>
                 <Button variant='secondary' onClick={() => addToFavs(movie.id)}>Add to Favorites</Button>
 
             </Card.Footer>
