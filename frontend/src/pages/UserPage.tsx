@@ -1,70 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
+import { useSelector, useDispatch } from 'react-redux';
 import { setUser } from '../state/userSlice'; // Import your user slice actions
-import { Card, Button, Image, Accordion, ListGroup } from 'react-bootstrap';
+import { Card, Button, Image, ListGroup } from 'react-bootstrap';
 import { RootState } from '../state/store';
 import './user.css'
-import axios from 'axios';
+
 function UserPage() {
     const user = useSelector((state: RootState) => state.user);
-    const auth = useSelector((state: RootState) => state.auth);
-
     const dispatch = useDispatch();
 
-    const apiUrl = 'http://localhost:4000/user/profile';
-    if (!auth.token && user.isLoaded && user.favorites) {
-        axios.put(`http://localhost:4000/user/profile/About/${user.username}`, { about: user.editedText })
-        axios.patch(`http://localhost:4000/user/profile/Favorites/${user.username}`, { favorites: user.favorites })
 
 
 
-    }
-
-    const loadFavoriteItems = async (favs: string[]) => {
-
-        const imageUrls = await Promise.all(
-            favs.map(async (item) => {
-                // Use axios.get to perform the GET request
-                const response = await axios.get(`http://127.0.0.1:4000/MovieFuel/search/byID?idnumber=${item}`, {
-                    withCredentials: false,
-                });
-                return response.data; // Extract data from the Axios response
-            })
-        );
-
-        dispatch(setUser({ favoriteItems: imageUrls }));
-    };
-
-
-    // Add isLoaded state
-    //todo add isloaded to store
-    useEffect(() => {
-        if (!user.isLoaded) { // Check if data has already been loaded
-            const usernameToRetrieve = 'danny007';
-
-            fetch(`${apiUrl}/${usernameToRetrieve}`)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    dispatch(setUser(data));
-                    dispatch(setUser({ isLoaded: true }));
-
-                    if (data.favorites) {
-                        loadFavoriteItems(data.favorites);
-                    }
-
-
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-        }
-    }, [dispatch]); // Add isLoaded as a dependency
 
     function handleAboutMeChange(event: any) {
         dispatch(setUser({ ...user, editedText: event.target.textContent }));
@@ -79,7 +26,7 @@ function UserPage() {
     }
 
     function handleSaveClick() {
-        dispatch(setUser({ ...user, isEditing: false, AboutMe: user.editedText }));
+        dispatch(setUser({ ...user, isEditing: false, aboutme: user.editedText }));
 
     }
     function handleDelete(id: number) {
