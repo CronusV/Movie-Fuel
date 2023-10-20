@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Nav, Navbar, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useSelector } from "react-redux";
@@ -12,7 +12,7 @@ function Navigation() {
   const [sendLogout, { isLoading, isSuccess, isError, error }] =
     useSendLogoutMutation();
 
-  const token = useSelector((state: RootState) => state.auth.token); 
+  const token = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
     if (isSuccess) navigate("/");
@@ -30,8 +30,8 @@ function Navigation() {
             <Nav.Link href="#home">Movies</Nav.Link>
 
             <Nav.Link href="#link">Reviews</Nav.Link>
-            <Nav.Link href="/Search">Search</Nav.Link>
-
+            <Nav.Link as={Link} to="/Search">Search</Nav.Link>
+            <Nav.Link as={Link} to="/Profile">Profile</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-actions">
