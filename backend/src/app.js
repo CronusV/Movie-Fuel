@@ -38,7 +38,7 @@ server.use(express.urlencoded({ extended: true }));
 
 // Using router
 server.use('/reviews', reviewRouter);
-server.use('/movies', movieRouter);
+server.use('/MovieFuel', movieRouter);
 server.use('/auth', authRouter);
 server.use('/user', userRouter);
 server.use('/comments', commentsRouter);
