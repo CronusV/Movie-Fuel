@@ -69,7 +69,7 @@ function PostTest({...props}: Review) {
     <Container>
       <Row>
         <Col md={8}>
-          <Post {...props} replies={comments.length}></Post>
+          <Post {...props} replies={comments.length} comments={comments} setComments={setComments}></Post>
           {comments.length > 0 ? comments.map((comment: CommentType) => (<Comment {...comment} comments={comments} setComments={setComments}/>)) : <div>No comments</div>}
         </Col>
         <Col md={4}>
