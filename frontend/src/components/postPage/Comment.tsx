@@ -18,7 +18,7 @@ function Comment({PostID, Comment, ReplyID, Author, DateTime, Likes, ReplyToID}:
         <Card.Header>
         </Card.Header>
         {/* This is the user section */}
-        <Card.Body>
+        <Card.Body> 
             {/* Create section for user info */}
             <div className="d-flex align-items-center">
                 <Image src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" 
