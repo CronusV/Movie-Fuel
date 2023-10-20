@@ -12,7 +12,7 @@ const cors = require("cors");
 // Routers
 const reviewRouter = require("./controllers/reviewsRouter");
 const authRouter = require("./controllers/authRouter");
-const myRouter = require("./utils/movieRouter")
+const myRouter = require("./controllers/movieRouter")
 const userRouter = require("./controllers/userController");
 
 // Define port number
