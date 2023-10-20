@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../state/store";
 import { useSendLogoutMutation } from "../../state/auth/authApiSlice";
 import "./navbar.css";
+import { Link } from "react-router-dom";
 
 function Navigation() {
   const navigate = useNavigate();
@@ -36,7 +37,12 @@ function Navigation() {
         </Navbar.Collapse>
         <div className="navbar-actions">
           {token ? (
-            <button onClick={() => sendLogout(null)}>Logout</button>
+            <>
+              <Button className="btn btn-danger" onClick={() => sendLogout(null)}>Logout</Button>
+              <LinkContainer to="/profile">
+                <Button>Profile</Button>
+              </LinkContainer>
+            </>
           ) : (
             <>
               <LinkContainer to="/login">
