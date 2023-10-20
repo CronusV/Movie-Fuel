@@ -22,7 +22,7 @@ function DetailsCard({poster_path, ...props}:fetchedMovie) {
           <p className="card-text">Average Rating: {props.vote_average}&nbsp;&nbsp;&nbsp;&nbsp; Based on {props.vote_count} votes</p>
           <p className="card-text">Genres: {genres}</p>
         </div>
-        <Link to={`https://www.imdb.com/title/${props.imdb_id}`}>
+        <Link to={`https://www.imdb.com/title/${props.imdb_id}`} target="_blank">
           <button type="button" className="btn btn-warning">Go to IMDB page</button>
         </Link>
       </div>
