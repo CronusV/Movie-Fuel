@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { RootState } from '../../state/store';
-import { setOtherUser } from '../../state/guestSlice.js'; // Import your user slice actions
+import { setOtherUser } from '../../state/guestSlice'; // Import your user slice actions
 import './guest.css'
-import getImagesByID from '../../utils/movieUtil.js';
+
 
 
 import { Card, Button, Image, Accordion, ListGroup, } from 'react-bootstrap'
+import axios from 'axios';
 
 function GuestProfileView() {
     const guest = useSelector((state: RootState) => state.guest);
@@ -18,8 +19,15 @@ function GuestProfileView() {
     console.log(Otherusername);
     const apiUrl = 'http://localhost:4000/user/profile';
     const loadFavoriteItems = async (favs: string[]) => {
-
-        const imageUrls = await Promise.all(favs.map(async (item: string) => getImagesByID(item)));
+        const imageUrls = await Promise.all(
+            favs.map(async (item) => {
+                // Use axios.get to perform the GET request
+                const response = await axios.get(`http://127.0.0.1:4000/MovieFuel/search/byID?idnumber=${item}`, {
+                    withCredentials: false,
+                });
+                return response.data; // Extract data from the Axios response
+            })
+        );
         console.log(imageUrls);
         dispatch(setOtherUser({ favoriteItems: imageUrls }));
     };

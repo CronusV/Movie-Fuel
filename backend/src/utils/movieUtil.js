@@ -1,6 +1,35 @@
-// require('dotenv').config({ path: require('find-config')('.env') });
-require('dotenv').config();
+require('dotenv').config({ path: require('find-config')('.env') });
+var key = process.env.TMDB_accessToken;
+const baseURL = 'https://api.themoviedb.org/3/movie';
+const imagePath = 'https://image.tmdb.org/t/p/original';
+const tmdbHeaders = {
+  accept: 'application/json',
+  Authorization: 'Bearer ' + key,
+};
 
+async function getNowPlayingMovies() {
+  const path = '/now_playing?language=en-US&page=1';
+  const options = {
+    method: 'GET',
+    headers: tmdbHeaders,
+  };
+
+  try {
+    const response = await fetch(baseURL + path, options);
+    const json = await response.json();
+    const movies = json.results.map((result) => {
+      result.backdrop_path = imagePath + result.backdrop_path;
+      result.poster_path = imagePath + result.poster_path;
+      return result;
+    });
+    return movies;
+  } catch (error) {
+    console.error(error);
+    return { message: 'Something went wrong' };
+  }
+}
+
+var key = process.env.TMDB_accessToken;
 function searchDataBaseByQuery(query, language, page) {
   if (language === void 0) {
     language = 'en-US';
@@ -17,7 +46,7 @@ function searchDataBaseByQuery(query, language, page) {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer '.concat(proccess.env.TMBD_TOKEN),
+      Authorization: 'Bearer '.concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -35,14 +64,13 @@ function searchDataBaseByQuery(query, language, page) {
   return data;
 }
 function searchDataBaseByID(id) {
-  console.log(`this is token ${process.env.TMBD_TOKEN}`);
   var fetch = require('node-fetch');
   var url = 'https://api.themoviedb.org/3/movie/'.concat(id);
   var options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer '.concat(process.env.TMBD_TOKEN),
+      Authorization: 'Bearer '.concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -60,15 +88,22 @@ function searchDataBaseByID(id) {
   return data;
 }
 // filtered search
-function filteredSearchSimple(genresInclude, genresExclude, sortBy, page) {
+function filteredSearchSimple(
+  genresInclude,
+  genresExclude,
+  sortBy,
+  sortdir,
+  page
+) {
   var fetch = require('node-fetch');
-  var url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&with_genres=${genresInclude}&without_genres=${genresExclude}&sort_by=${sortBy}`;
+  console.log(String(sortBy));
+  var url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&with_genres=${genresInclude}&without_genres=${genresExclude}&sort_by=${sortBy}.${sortdir}`;
   console.log(url);
   var options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer '.concat(process.env.TMBD_TOKEN),
+      Authorization: 'Bearer '.concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -96,32 +131,7 @@ function getImagesByID(id) {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer '.concat(process.env.TMBD_TOKEN),
-    },
-  };
-  var data = new Promise(function (resolve, reject) {
-    fetch(url, options)
-      .then(function (res) {
-        return res.json();
-      })
-      .then(function (json) {
-        resolve(json);
-      })
-      .catch(function (err) {
-        return console.error('error:' + err);
-      });
-  });
-  return data;
-}
-
-function getPosterByID(id) {
-  let fetch = require('node-fetch');
-  let url = 'https://api.themoviedb.org/3/movie/'.concat(id, '?language=en-US');
-  var options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer '.concat(process.env.TMBD_TOKEN),
+      Authorization: 'Bearer '.concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -156,7 +166,7 @@ module.exports = {
   searchDataBaseByQuery,
   searchDataBaseByID,
   filteredSearchSimple,
+  getNowPlayingMovies,
   getImagesByID,
   buildImageURL,
-  getPosterByID,
 };

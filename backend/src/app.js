@@ -11,7 +11,7 @@ const cors = require('cors');
 // Routers
 const reviewRouter = require('./controllers/reviewsRouter');
 const authRouter = require('./controllers/authRouter');
-const movieRouter = require('./controllers/tmbdMovieRouter');
+const movieRouter = require('./controllers/movieRouter');
 const userRouter = require('./controllers/userController');
 const commentsRouter = require('./controllers/commentsRouter');
 

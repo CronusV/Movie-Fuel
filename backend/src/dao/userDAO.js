@@ -1,17 +1,16 @@
 const AWS = require('aws-sdk');
 AWS.config.update({
-  region: 'us-east-1',
-  region: process.env.AWS_REGION || 'us-east-1',
+  region: process.env.AWS_REGION || 'us-east-2',
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
 const TableName = 'MovieFuel-Users';
 
-function addToFavorites(username, id) {
+function addToFavorites(username, favorites) {
   const params = {
-    TableName: 'MovieFuel-Users',
+    TableName,
     Key: {
-      UserName: username,
+      username,
     },
   };
 
@@ -19,15 +18,15 @@ function addToFavorites(username, id) {
     .get(params)
     .promise()
     .then((data) => {
-      data.Item.Favorites.push(id);
+      // data.Item.favorites.push(id);
       const updateParams = {
-        TableName: 'MovieFuel-Users',
+        TableName,
         Key: {
-          UserName: username,
+          username,
         },
-        UpdateExpression: 'SET Favorites = :newFavorites',
+        UpdateExpression: 'SET favorites = :newFavorites',
         ExpressionAttributeValues: {
-          ':newFavorites': data.Item.Favorites,
+          ':newFavorites': favorites,
         },
       };
 
@@ -50,7 +49,7 @@ function addUser(user) {
 
 function getUser(username) {
   const params = {
-    TableName: 'MovieFuel-Users',
+    TableName,
     Key: {
       username,
     },
@@ -58,9 +57,38 @@ function getUser(username) {
 
   return docClient.get(params).promise();
 }
+function updateAbout(username, about) {
+  const params = {
+    TableName,
+    Key: {
+      username,
+    },
+  };
 
+  return docClient
+    .get(params)
+    .promise()
+    .then((data) => {
+      const updateParams = {
+        TableName,
+        Key: {
+          username,
+        },
+        UpdateExpression: 'SET aboutme = :newabout',
+        ExpressionAttributeValues: {
+          ':newabout': about,
+        },
+      };
+
+      docClient.update(updateParams).promise();
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
 module.exports = {
   addUser,
   getUser,
   addToFavorites,
+  updateAbout,
 };
