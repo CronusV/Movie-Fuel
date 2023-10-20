@@ -42,10 +42,8 @@ function UserPage() {
         <>
             <div className="d-flex flex-column justify-content-center align-items-center">
                 <p id='title'>Your Profile Page</p>
-                <div id="profile-picture">
-                    <Image id="profile-circle" src={user.profilepicture} alt="profile for user" roundedCircle />
-                </div>
-                <span id="username-box"></span>
+
+                <span id="username-box">{user.username}</span>
             </div>
 
             <div id="container">
