@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import BackdropCard from "../components/MovieCard/BackdropCard";
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { collection, company, genre, country, language, fetchedMovie} from "../types/movie_byID"
 
@@ -8,6 +8,7 @@ function MoviePage(){
     let movieID = useParams();
     const [loading, setLoading] = useState(false); 
     const [movie, setMovie] = useState <fetchedMovie>();
+    
     useEffect(() => { 
         const loadMovies = async () => { 
             setLoading(true);

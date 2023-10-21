@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const logic = require('../utils/movieUtil');
+
 router.get('/nowPlaying', (req,res) => {
     logic.getNowPlayingMovies()
     .then((data) => {
@@ -11,7 +12,8 @@ router.get('/nowPlaying', (req,res) => {
         res.status(400);
         res.send(err)
     })
-})
+});
+
 router.get('/discover', (req, res) => {
     const include = (req.query.include);
     const exclude = (req.query.exclude);
