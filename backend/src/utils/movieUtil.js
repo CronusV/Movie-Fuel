@@ -29,7 +29,6 @@ async function getNowPlayingMovies(){
   }
 };
 
-var key = process.env.TMDB_accessToken;
 function searchDataBaseByQuery(query, language, page) {
     if (language === void 0) { language = 'en-US'; }
     if (page === void 0) { page = 1; }

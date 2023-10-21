@@ -12,7 +12,7 @@ const cors = require("cors");
 // Routers
 const reviewRouter = require("./controllers/reviewsRouter");
 const authRouter = require("./controllers/authRouter");
-const myRouter = require("./controllers/movieRouter")
+const movieRouter = require("./controllers/movieRouter")
 const userRouter = require("./controllers/userController");
 
 // Define port number
@@ -38,7 +38,7 @@ server.use(express.urlencoded({ extended: true }));
 
 // Using router
 server.use('/reviews', reviewRouter);
-server.use('/MovieFuel', myRouter);
+server.use('/MovieFuel', movieRouter);
 server.use("/auth", authRouter);
 server.use('/user', userRouter);
 server.listen(PORT, () => {
