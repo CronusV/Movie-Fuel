@@ -12,7 +12,7 @@ import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { Review } from "./types/Review";
-import ReviewHome from "./pages/ReviewHome";
+import Reviews from "./pages/Reviews";
 // const props = {text:"barbie",language:"en-US",page:1}
 
 const testPost: Review = {
@@ -41,11 +41,14 @@ function App() {
         <Route path="/Search/:searchtext" element={<SearchPagePage />} />
         <Route path="/profile" element={<UserPage />} />
         <Route path="/guest-profile/:Otherusername" element={<GuestPage />} />
+
         <Route path="/postTest" element={<PostTest {...testPost}/>} />
+        <Route path="/Reviews" element={<Reviews />} />
+        {/* // <Route path="/reviewHome" element={<ReviewHome/>} /> */}
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
-        <Route path="/reviewHome" element={<ReviewHome/>} />
+        
       </Routes>
     </Container>
   );
