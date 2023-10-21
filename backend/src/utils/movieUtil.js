@@ -1,4 +1,4 @@
-// require('dotenv').config({ path: require('find-config')('.env') });
+require('dotenv').config({ path: require('find-config')('.env') });
 var key = process.env.TMDB_accessToken;
 
 console.log(`this is the key ${key}`);
@@ -10,6 +10,7 @@ const tmdbHeaders = {
 };
 
 async function getNowPlayingMovies() {
+  var fetch = require('node-fetch');
   const path = '/now_playing?language=en-US&page=1';
   const options = {
     method: 'GET',
@@ -62,7 +63,7 @@ function searchDataBaseByQuery(query, language, page) {
         resolve(json);
       })
       .catch(function (err) {
-        return console.error('error:' + err);
+        resolve({ message: 'Something went wrong' });
       });
   });
   return data;
@@ -86,7 +87,7 @@ function searchDataBaseByID(id) {
         resolve(json);
       })
       .catch(function (err) {
-        return console.error('error:' + err);
+        resolve({ message: 'Something went wrong' });
       });
   });
   return data;
@@ -119,7 +120,7 @@ function filteredSearchSimple(
         resolve(json);
       })
       .catch(function (err) {
-        return console.error('error:' + err);
+        resolve({ message: 'Something went wrong' });
       });
   });
   return data;
@@ -147,7 +148,7 @@ function getImagesByID(id) {
         resolve(json);
       })
       .catch(function (err) {
-        return console.error('error:' + err);
+        resolve({ message: 'Something went wrong' });
       });
   });
   return data;
