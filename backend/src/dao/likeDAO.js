@@ -1,8 +1,8 @@
 const AWS = require('aws-sdk');
+require("dotenv").config();
 AWS.config.update({
-  region: 'us-east-1',
+  region: process.env.AWS_REGION || "us-west-2",
 });
-
 // Interface to DynamoDB
 const docClient = new AWS.DynamoDB.DocumentClient();
 // This is table name in dynamoDB

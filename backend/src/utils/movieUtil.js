@@ -1,12 +1,12 @@
-require('dotenv').config({ path: require('find-config')('.env') });
-var key = process.env.TMDB_accessToken;
+require('dotenv').config();
+var key = process.env.TMDB_KEY;
 
 console.log(`this is the key ${key}`);
 const baseURL = 'https://api.themoviedb.org/3/movie';
 const imagePath = 'https://image.tmdb.org/t/p/original';
 const tmdbHeaders = {
   accept: "application/json",
-  Authorization: "Bearer "+key,
+  Authorization: "Bearer " + key,
 };
 
 async function getNowPlayingMovies() {

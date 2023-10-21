@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
+require("dotenv").config();
 AWS.config.update({
-  region: process.env.AWS_REGION || 'us-east-2',
+  region: process.env.AWS_REGION || "us-west-2",
 });
 
 const docClient = new AWS.DynamoDB.DocumentClient();
