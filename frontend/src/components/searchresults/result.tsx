@@ -1,5 +1,5 @@
 
-import { Card, Button, Image, Alert } from 'react-bootstrap'
+import { Card, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../state/store';
@@ -74,6 +74,7 @@ function SearchResult(movie: resultItem) {
                 <Link to={`/discover/${movie.genre_ids}`}>
                     <Button variant='secondary'>Find similar movies</Button>
                 </Link>
+                {auth.token ? <Button variant='secondary' onClick={() => addToFavs(movie.id)}>Add to Favorites</Button> : ''}
 
 
             </Card.Footer>
