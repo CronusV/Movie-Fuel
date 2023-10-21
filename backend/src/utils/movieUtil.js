@@ -1,5 +1,6 @@
 // require('dotenv').config({ path: require('find-config')('.env') });
 var key = process.env.TMDB_accessToken;
+
 console.log(`this is the key ${key}`);
 const baseURL = 'https://api.themoviedb.org/3/movie';
 const imagePath = 'https://image.tmdb.org/t/p/original';
@@ -12,6 +13,7 @@ async function getNowPlayingMovies() {
   const path = '/now_playing?language=en-US&page=1';
   const options = {
     method: 'GET',
+
     headers: tmdbHeaders,
   };
 
@@ -22,6 +24,8 @@ async function getNowPlayingMovies() {
       result.backdrop_path = imagePath + result.backdrop_path;
       result.poster_path = imagePath + result.poster_path;
       return result;
+
+
     });
     return movies;
   } catch (error) {
@@ -163,6 +167,7 @@ function buildImageURL(path) {
 // })
 //     .catch(function (err) { return console.error('error:' + err); });
 module.exports = {
+
   searchDataBaseByQuery,
   searchDataBaseByID,
   filteredSearchSimple,
@@ -170,3 +175,4 @@ module.exports = {
   getImagesByID,
   buildImageURL,
 };
+
