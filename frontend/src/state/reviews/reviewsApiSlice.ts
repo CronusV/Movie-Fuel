@@ -17,14 +17,14 @@ export const reviewsApiSlice = apiSlice.injectEndpoints({
         }),
         // Mutation to refetch the single Review query
         getReviewAgain: builder.mutation({
-            query: (id: string) => ({
+            query: (id: string | undefined) => ({
                 url: `/reviews/${id}`,
                 method: "GET"
             })
         }),
         
         createReview: builder.mutation({
-            query: (data:Review) => {
+            query: (data) => {
                 return {
                     url: "/reviews",
                     method: "POST",
