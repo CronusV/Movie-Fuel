@@ -62,7 +62,7 @@ function SideBarMovie({movieID}: sideBarProps) {
           {movieDescription}
         </Card.Text>
         <LinkContainer to={`/Movies/${movieID}`}>
-        <Button variant="primary" className="mt-3">Go Movie Page</Button>
+        <Button variant="primary" className="mt-3">Go To Movie Page</Button>
         </LinkContainer>
       </Card.Body>
     </Card>
