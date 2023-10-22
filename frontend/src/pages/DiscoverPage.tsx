@@ -1,10 +1,10 @@
 import DiscoverScroll from "../components/discover/Discover";
 import { useParams, useNavigate } from "react-router-dom";
 import React from "react";
-import{Dropdown, DropdownButton, Form, InputGroup} from 'react-bootstrap'
+import{Dropdown, DropdownButton, Form, InputGroup, Button} from 'react-bootstrap'
 const DiscoverPage = () => {
     let genre_ids = useParams()
-    console.log(genre_ids.ids)
+    console.log(genre_ids)
     const [currentPage, setCurrentPage] = React.useState(1);
     const [sort, setSort] = React.useState("popularity")
     const [sortdir, setSortDir] = React.useState("desc")
@@ -45,15 +45,14 @@ const DiscoverPage = () => {
           <Dropdown.Item onClick={dropDownClick} href="#" id='vote_average.desc'>rating descending</Dropdown.Item>
           <Dropdown.Item onClick={dropDownClick} href="#" id='vote_average.asc'>rating ascending</Dropdown.Item>
         </DropdownButton>
-        
-            <input type='text' className='form-control' placeholder="Search movies" onChange={onChange}></input>
-            <input type="btn" id='submitfire' className='btn btn-danger' value='Go' onClick={gotosearch}></input>
+        <input type='text' data-testid="searchbar" className='form-control' placeholder="Search movies" onChange={onChange}></input>
+          <Button id='submitfire' data-testid="go" className='btn btn-danger' onClick={gotosearch}>Go</Button>
         </form>
       </InputGroup>
         <DiscoverScroll text={genre_ids.ids} page={currentPage} language="en-US" sortby={sort} sortdir={sortdir}/>
-        <input type="btn" className='btn btn-danger' id="prevPageButton" value="Previous Page" onClick={prevpage}></input>
-      <span>Page:{currentPage}</span>
-      <input type="btn" className='btn btn-danger' id="nextPageButton" value="Next Page" onClick={nextpage}></input>
+        <Button className='btn btn-danger' data-testid="prevPageButton" id="prevPageButton"  onClick={prevpage}>Previous Page</Button>
+        <span>Page:{currentPage}</span>
+        <Button className='btn btn-danger' data-testid="nextPageButton" id="nextPageButton" onClick={nextpage}>Next Page</Button>
     </section>;
   };
 export default DiscoverPage
