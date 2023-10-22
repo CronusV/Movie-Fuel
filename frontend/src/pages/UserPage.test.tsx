@@ -78,5 +78,26 @@ describe("<UserPage />", () => {
         expect(screen.queryByText(/Cancel/)).toBeInTheDocument();
     });
 
+    test("favorite should be removed from list", () => {
+        initialState.user.isEditing = false;
+        initialState.user.favoriteItems.pop();
+        render(
+            <Provider store={store}>
+                <UserPage />
+            </Provider>
+        );
 
+        // Check if user information is displayed
+        expect(screen.getByText("Your Profile Page")).toBeInTheDocument();
+        expect(screen.getByText("Sample About Me")).toBeInTheDocument();
+        expect(screen.getByText("Sample Title 1")).toBeInTheDocument();
+        expect(screen.queryByText("Sample Title 2")).not.toBeInTheDocument();
+        expect(screen.getByText("Sample Overview 1")).toBeInTheDocument();
+        expect(screen.queryByText("Sample Overview 2")).not.toBeInTheDocument();
+        expect(screen.getAllByText("delete").length).toBe(1);
+        expect(screen.getByText("Edit")).toBeInTheDocument();
+
+
+
+    });
 });
