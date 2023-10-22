@@ -1,5 +1,5 @@
 import SearchPage from './searchresults/Search';
-import React, { useState } from 'react'
+import React, { FormEvent, useState } from 'react'
 import{ Button, InputGroup } from 'react-bootstrap'
 import { useParams } from 'react-router-dom';
 function Searchbar() {
@@ -16,7 +16,8 @@ function Searchbar() {
     }
   }
     let value = '';
-    function onSubmit(){
+    function onSubmit(e: FormEvent<HTMLFormElement>){
+        e.preventDefault();
         setQuery(value);
         console.log(value)
     }
@@ -28,7 +29,7 @@ function Searchbar() {
       <InputGroup className="w-50 p-3">
       <form className="d-flex" onSubmit={onSubmit}>
             <input type='text' data-testid="searchbar" className='form-control' placeholder="Search movies" onChange={onChange}></input>
-            <Button id='submitfire' data-testid="go" className='btn btn-danger' onClick={onSubmit}>Go</Button>
+            <Button id='submitfire' data-testid="go" className='btn btn-danger' type="submit">Go</Button>
         </form>
       </InputGroup>
       <SearchPage text={query} language="en-US" page={currentPage}></SearchPage>
