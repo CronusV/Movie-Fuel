@@ -1,19 +1,17 @@
-require('dotenv').config({ path: require('find-config')('.env') });
+require("dotenv").config({ path: require("find-config")(".env") });
 var key = process.env.TMDB_accessToken;
-
-console.log(`this is the key ${key}`);
-const baseURL = 'https://api.themoviedb.org/3/movie';
-const imagePath = 'https://image.tmdb.org/t/p/original';
+const baseURL = "https://api.themoviedb.org/3/movie";
+const imagePath = "https://image.tmdb.org/t/p/original";
 const tmdbHeaders = {
-  accept: 'application/json',
-  Authorization: 'Bearer ' + key,
+  accept: "application/json",
+  Authorization: "Bearer " + key,
 };
 
 async function getNowPlayingMovies() {
-  var fetch = require('node-fetch');
-  const path = '/now_playing?language=en-US&page=1';
+  var fetch = require("node-fetch");
+  const path = "/now_playing?language=en-US&page=1";
   const options = {
-    method: 'GET',
+    method: "GET",
 
     headers: tmdbHeaders,
   };
@@ -25,33 +23,31 @@ async function getNowPlayingMovies() {
       result.backdrop_path = imagePath + result.backdrop_path;
       result.poster_path = imagePath + result.poster_path;
       return result;
-
-
     });
     return movies;
   } catch (error) {
     console.error(error);
-    return { message: 'Something went wrong' };
+    return { message: "Something went wrong" };
   }
 }
 
 function searchDataBaseByQuery(query, language, page) {
   if (language === void 0) {
-    language = 'en-US';
+    language = "en-US";
   }
   if (page === void 0) {
     page = 1;
   }
-  var fetch = require('node-fetch');
-  var url = 'https://api.themoviedb.org/3/search/movie?query='
-    .concat(query, '&include_adult=false&language=')
-    .concat(language, '&page=')
+  var fetch = require("node-fetch");
+  var url = "https://api.themoviedb.org/3/search/movie?query="
+    .concat(query, "&include_adult=false&language=")
+    .concat(language, "&page=")
     .concat(page);
   var options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer '.concat(key),
+      accept: "application/json",
+      Authorization: "Bearer ".concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -63,19 +59,19 @@ function searchDataBaseByQuery(query, language, page) {
         resolve(json);
       })
       .catch(function (err) {
-        resolve({ message: 'Something went wrong' });
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
 }
 function searchDataBaseByID(id) {
-  var fetch = require('node-fetch');
-  var url = 'https://api.themoviedb.org/3/movie/'.concat(id);
+  var fetch = require("node-fetch");
+  var url = "https://api.themoviedb.org/3/movie/".concat(id);
   var options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer '.concat(key),
+      accept: "application/json",
+      Authorization: "Bearer ".concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -87,19 +83,19 @@ function searchDataBaseByID(id) {
         resolve(json);
       })
       .catch(function (err) {
-        resolve({ message: 'Something went wrong' });
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
 }
 function getDirectorByID(id) {
-  var fetch = require('node-fetch');
+  var fetch = require("node-fetch");
   var url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
   var options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer '.concat(key),
+      accept: "application/json",
+      Authorization: "Bearer ".concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -108,11 +104,11 @@ function getDirectorByID(id) {
         return res.json();
       })
       .then(function (json) {
-        json = json.crew.filter(({job})=> job ==='Director')
+        json = json.crew.filter(({ job }) => job === "Director");
         resolve(json);
       })
       .catch(function (err) {
-        resolve({ message: 'Something went wrong' });
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
@@ -125,15 +121,15 @@ function filteredSearchSimple(
   sortdir,
   page
 ) {
-  var fetch = require('node-fetch');
+  var fetch = require("node-fetch");
   console.log(String(sortBy));
   var url = `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&with_genres=${genresInclude}&without_genres=${genresExclude}&sort_by=${sortBy}.${sortdir}`;
   console.log(url);
   var options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer '.concat(key),
+      accept: "application/json",
+      Authorization: "Bearer ".concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -145,23 +141,23 @@ function filteredSearchSimple(
         resolve(json);
       })
       .catch(function (err) {
-        resolve({ message: 'Something went wrong' });
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
 }
 // get images "https://image.tmdb.org/t/p/original
 function getImagesByID(id) {
-  var fetch = require('node-fetch');
-  var url = 'https://api.themoviedb.org/3/movie/'.concat(
+  var fetch = require("node-fetch");
+  var url = "https://api.themoviedb.org/3/movie/".concat(
     id,
-    '/images?include_image_language=en&language=en'
+    "/images?include_image_language=en&language=en"
   );
   var options = {
-    method: 'GET',
+    method: "GET",
     headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer '.concat(key),
+      accept: "application/json",
+      Authorization: "Bearer ".concat(key),
     },
   };
   var data = new Promise(function (resolve, reject) {
@@ -173,13 +169,13 @@ function getImagesByID(id) {
         resolve(json);
       })
       .catch(function (err) {
-        resolve({ message: 'Something went wrong' });
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
 }
 function buildImageURL(path) {
-  return 'https://image.tmdb.org/t/p/original' + path;
+  return "https://image.tmdb.org/t/p/original" + path;
 }
 // filteredSearchSimple("12","28,18",1)
 // .then((data) => {
@@ -201,4 +197,3 @@ module.exports = {
   getImagesByID,
   buildImageURL,
 };
-

@@ -34,10 +34,10 @@ function ReplyForm({PostID, Author, Likes, Movie, Comment, Title, DateTime, comm
 
     return (
     // If we have a title in the response then that means its a reply to a review
-    <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-        <Form.Label>Reply</Form.Label>
-        <Form.Control as="textarea" rows={3} value={replyText} onChange={handleChange}/>
+    <Form onSubmit={handleSubmit} >
+        <Form.Group className="mb-3" controlId="ReplyText">
+        <Form.Label>Comment</Form.Label>
+        <Form.Control as="textarea" rows={3} value={replyText} onChange={handleChange} required/>
         </Form.Group>
         <Button variant="primary" type="submit">
             Submit
