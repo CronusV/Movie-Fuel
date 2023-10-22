@@ -10,7 +10,7 @@ export const repliesApiSlice = apiSlice.injectEndpoints({
             })
         }),
         getCommentsFromPost: builder.mutation({
-            query: (id: string) => ({
+            query: (id: string | undefined) => ({
                 url: `/comments/${id}`,
                 method: "GET"
             })
