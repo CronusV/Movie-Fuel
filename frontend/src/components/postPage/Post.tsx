@@ -70,9 +70,11 @@ function Post({PostID, Author, Likes, Movie, Comment, Title, DateTime, replies, 
             {/* Footer */}
             <Card.Footer className='d-flex justify-content-start'>
                 <Button variant='primary' className='me-3' onClick={handleReplyClick}>Reply</Button>
-                <Button variant='secondary'>Likes {Likes}</Button>
+                {/* No time for comments */}
+                {/* <Button variant='secondary'>Likes {Likes}</Button> */}
             </Card.Footer>
-            <Card.Footer><Alert variant='info' show={showAlert} onClose={() => setShowAlert(false)} dismissible> Can't reply to post unless you log in!</Alert>
+            <Card.Footer>
+                <Alert variant='info' show={showAlert} onClose={() => setShowAlert(false)} dismissible> Can't reply to post unless you log in!</Alert>
                 {showReplyForm ? <ReplyForm {...props} comments={comments} setComments={setComments} showReplyForm={showAlert} setShowReplyForm={setShowReplyForm}/> : null}
             </Card.Footer>
         </Card>
