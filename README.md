@@ -1,6 +1,6 @@
 # Movie-Fuel
 
-<details open>
+<details>
 <summary>Developer Quick Doc </summary>
 <br>
  
