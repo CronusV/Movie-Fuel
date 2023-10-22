@@ -92,6 +92,31 @@ function searchDataBaseByID(id) {
   });
   return data;
 }
+function getDirectorByID(id) {
+  var fetch = require('node-fetch');
+  var url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
+  var options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'Bearer '.concat(key),
+    },
+  };
+  var data = new Promise(function (resolve, reject) {
+    fetch(url, options)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (json) {
+        json = json.crew.filter(({job})=> job ==='Director')
+        resolve(json);
+      })
+      .catch(function (err) {
+        resolve({ message: 'Something went wrong' });
+      });
+  });
+  return data;
+}
 // filtered search
 function filteredSearchSimple(
   genresInclude,
@@ -168,7 +193,7 @@ function buildImageURL(path) {
 // })
 //     .catch(function (err) { return console.error('error:' + err); });
 module.exports = {
-
+  getDirectorByID,
   searchDataBaseByQuery,
   searchDataBaseByID,
   filteredSearchSimple,

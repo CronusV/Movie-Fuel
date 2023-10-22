@@ -1,10 +1,10 @@
-import {searchDataBaseByQuery, searchDataBaseByID, filteredSearchSimple,getImagesByID,getNowPlayingMovies,buildImageURL} from "../movieUtil.js";
+import {searchDataBaseByQuery, getDirectorByID, searchDataBaseByID, filteredSearchSimple,getImagesByID,getNowPlayingMovies,buildImageURL} from "../movieUtil.js";
 var fetch = require("node-fetch");
 jest.mock("node-fetch", () => jest.fn());
 fetch.mockImplementation((input) => 
 Promise.resolve({
     json: jest.fn().mockReturnValue({
-        data: input, results: [{backdrop_path: "foo", poster_path: "bar", data: input}]
+        data: input, results: [{backdrop_path: "foo", poster_path: "bar", data: input}], crew: [{job:"Director",data:input}]
     }),
 }))
 afterEach(() => {
@@ -39,6 +39,15 @@ test("searchDataBaseByID should call the tmdb api once with the provided paramet
     const result = await searchDataBaseByID(ID);
     expect(result.data).toBe(
         'https://api.themoviedb.org/3/movie/1'
+      )
+    expect(fetch).toHaveBeenCalledTimes(1)
+})
+test("getDirectorByID should call the tmdb api once with the provided parameters", async () => {
+    const ID = '1';
+    const result = await getDirectorByID(ID);
+    console.log(result)
+    expect(result[0].data).toBe(
+        'https://api.themoviedb.org/3/movie/1/credits?language=en-US'
       )
     expect(fetch).toHaveBeenCalledTimes(1)
 })
@@ -106,6 +115,18 @@ test("searchmoviesByID should error when promise is rejected", async () => {
     }))
     const ID = '1';
     const result = await searchDataBaseByID(ID);
+    expect(result.message).toBe("Something went wrong")
+    expect(fetch).toHaveBeenCalledTimes(1)
+})
+test("getDirectorByID should error when promise is rejected", async () => {
+    fetch.mockImplementation((input) => 
+    Promise.reject({
+        json: jest.fn().mockReturnValue({
+            data: input, results: [{backdrop_path: "foo", poster_path: "bar", data: input}]
+        }),
+    }))
+    const ID = '1';
+    const result = await getDirectorByID(ID);
     expect(result.message).toBe("Something went wrong")
     expect(fetch).toHaveBeenCalledTimes(1)
 })
