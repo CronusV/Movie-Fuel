@@ -28,7 +28,7 @@ function Searchbar() {
     <>
       <InputGroup className="w-50 p-3">
       <form className="d-flex" onSubmit={onSubmit}>
-            <input type='text' data-testid="searchbar" className='form-control' placeholder="Search movies" onChange={onChange}></input>
+            <input type='text' data-testid="searchbar" className='form-control me-3' placeholder="Search movies" onChange={onChange}></input>
             <Button id='submitfire' data-testid="go" className='btn btn-danger' type="submit">Go</Button>
         </form>
       </InputGroup>
