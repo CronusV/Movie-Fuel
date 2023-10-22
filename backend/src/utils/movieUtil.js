@@ -1,4 +1,4 @@
-// require('dotenv').config({ path: require('find-config')('.env') });
+require("dotenv").config({ path: require("find-config")(".env") });
 var key = process.env.TMDB_accessToken;
 const baseURL = "https://api.themoviedb.org/3/movie";
 const imagePath = "https://image.tmdb.org/t/p/original";
@@ -8,9 +8,11 @@ const tmdbHeaders = {
 };
 
 async function getNowPlayingMovies() {
+  var fetch = require("node-fetch");
   const path = "/now_playing?language=en-US&page=1";
   const options = {
     method: "GET",
+
     headers: tmdbHeaders,
   };
 
@@ -57,7 +59,7 @@ function searchDataBaseByQuery(query, language, page) {
         resolve(json);
       })
       .catch(function (err) {
-        return console.error("error:" + err);
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
@@ -81,7 +83,32 @@ function searchDataBaseByID(id) {
         resolve(json);
       })
       .catch(function (err) {
-        return console.error("error:" + err);
+        resolve({ message: "Something went wrong" });
+      });
+  });
+  return data;
+}
+function getDirectorByID(id) {
+  var fetch = require("node-fetch");
+  var url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US`;
+  var options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: "Bearer ".concat(key),
+    },
+  };
+  var data = new Promise(function (resolve, reject) {
+    fetch(url, options)
+      .then(function (res) {
+        return res.json();
+      })
+      .then(function (json) {
+        json = json.crew.filter(({ job }) => job === "Director");
+        resolve(json);
+      })
+      .catch(function (err) {
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
@@ -114,7 +141,7 @@ function filteredSearchSimple(
         resolve(json);
       })
       .catch(function (err) {
-        return console.error("error:" + err);
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
@@ -142,7 +169,7 @@ function getImagesByID(id) {
         resolve(json);
       })
       .catch(function (err) {
-        return console.error("error:" + err);
+        resolve({ message: "Something went wrong" });
       });
   });
   return data;
@@ -162,6 +189,7 @@ function buildImageURL(path) {
 // })
 //     .catch(function (err) { return console.error('error:' + err); });
 module.exports = {
+  getDirectorByID,
   searchDataBaseByQuery,
   searchDataBaseByID,
   filteredSearchSimple,

@@ -1,6 +1,7 @@
 const AWS = require('aws-sdk');
+require('dotenv').config({ path: require('find-config')('.env') });
 AWS.config.update({
-  region: 'us-east-1',
+  region: process.env.AWS_REGION,
 });
 
 // Interface to DynamoDB
