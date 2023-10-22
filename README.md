@@ -8,18 +8,33 @@
 1. Clone: `git clone https://github.com/CronusV/Movie-Fuel.git`
 2. Move to directory: `cd Movie-Fuel`
 3. Get dev branch: `git checkout dev`
+4. Make your own feature branch `git checkout -b <feature-branch>`
+5. Install all the dependencies with `npm ci`, but if new dependencies are added use `npm install`
+6. Need aws account, so create one if needed, and [initialize it to your system](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-install.html). Make sure you set up environment [variables for your system](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/credentials.html)
+7. Need to set up environmnet details `AWS_REGION = <Your_AWS_REGION>`
+8. Make an account in [tmbd](https://developer.themoviedb.org/reference/intro/getting-started) to get your api key and set it to environment `TMDB_accesstoken`
+9. In order to create JWT tokens we need a secret. Create environment variable `ACCESS_TOKEN_SECRET = <Anything_can_be_put_here_make_it_random>` and also `ACCESS_TOKEN_SECRET = <Anything_can_be_put_here_make_it_random>`
+10. Make dynamoDB tables in the same region as `AWS_REGION`
+    1. Make table : `MovieFuel-Users` with partition key `username`
+    2. Make table : `MovieFuel-Reviews` with partion key `PostID` and sort key `DateTime`
+        - Make PostID a GSI
+    3. Make table : `MovieFuel-Replies` with partion key `ReplyID` and sort key `DateTime`
+        - Make `ReplyID` a GSI
+        - Make `PostID` a GSI
+    4. Make table : `Likes` with partion key `ContentID` 
 
 # Git Workflow
 - main branch is **production ready code** and should be stable
 - dev branch is **development code** where features branches should be merged to
 1. From dev, create another branch with feature name `git checkout -b <feature-branch-name>`
 2. Finish developing code on feature branch by adding and commiting changes
-3. Push feature Branch `git push origin <feature-branch-name>`
-4. On github go to *pull requests* tab and click on *new pull request* button
-5. Select dev branch for base base branch (this is where we want to merge)
-6. On compare select your feature-branch-name
-7. Submit pull request
-8. Team lead and members will approve/deny pull request
+3. Make sure to merge your current branch to current dev branch (don't forget to pull) for easy merging
+4. Push feature Branch `git push origin <feature-branch-name>`
+5. On github go to *pull requests* tab and click on *new pull request* button
+6. Select dev branch for base base branch (this is where we want to merge)
+7. On compare select your feature-branch-name
+8. Submit pull request
+9. Team lead and members will approve/deny pull request
 
 
 # Notes
