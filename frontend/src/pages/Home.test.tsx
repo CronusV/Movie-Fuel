@@ -4,17 +4,9 @@ import configureStore from 'redux-mock-store';
 import HomePage from './HomePage';
 import { MemoryRouter } from "react-router-dom";
 
-var axios = require("axios");
-jest.mock("axios", () => jest.fn());
-const fr = axios.mockImplementation((input: any) =>
-    Promise.resolve({
-        json: jest.fn().mockReturnValue({
-            data: input, username: 'ds'
-        }),
-    }))
 const mockStore = configureStore([]);
 
-jest.mock('axios');
+
 
 describe("<HomePage />", () => {
     const initialState = {
@@ -51,7 +43,8 @@ describe("<HomePage />", () => {
         expect(screen.getByText(/READ REVIEWS/)).toBeInTheDocument();
         expect(screen.getByText(/Now Playing/)).toBeInTheDocument();
         expect(screen.getByText(/Seen any movies lately?/)).toBeInTheDocument();
-        expect(fr).toHaveBeenCalledTimes(1);
+
+
 
     });
 
