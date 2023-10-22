@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import UserPage from "./UserPage";
 
-
+console.error = jest.fn();
 const mockStore = configureStore([]);
 const initialState = {
     user: {
