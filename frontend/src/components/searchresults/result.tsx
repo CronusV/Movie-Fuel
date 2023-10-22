@@ -74,6 +74,10 @@ function SearchResult(movie: resultItem) {
                 <Link to={`/discover/${movie.genre_ids}`}>
                     <Button variant='secondary'>Find similar movies</Button>
                 </Link>
+                <Link to={`/Reviews`}>
+                    <Button variant='secondary'>Review This Movie</Button>
+                </Link>
+                
                 {auth.token ? <Button variant='secondary' onClick={() => addToFavs(movie.id)}>Add to Favorites</Button> : ''}
 
 
