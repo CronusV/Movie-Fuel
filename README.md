@@ -56,4 +56,21 @@ It ensures packages are installed from package-lock.json file. [link](https://su
     Your registered email is displayed under the "Email" section.
     This email is used for account-related notifications and communication.
 
+# Review Page
+1. Reviews Section
+ Has a list of reviews posted from newest at the top to oldest at the bottom along with a review card that shows the image for the movie and review details such as username, postid, date, and review section. You can click on the card to be put in the post section of the review
+2. Post Review Button
+ Button that allows you to create a review only if you are a current user. Pops open a form to give
+    - Title for your review
+    - Movie that you are reviewing
+    - Review comment
+# Post Page
+1. Post Section
+   Has the original post along with username, post id, date, replies, button that moves user to the latest comment, and reply button that pops open a form to reply to the post only if you are a logged in user
+2. Comment Section
+   Has a list of all the comments from oldest to latest. Each comment has its username, comment id, date, default picture, inner reply if comment replied to another comment, and reply button with form to reply to a specific comment.
+3. SideBar Section
+   Has movie name, release date, genres, and run time as a top header. Below there is the poster for the movie and information about the movie. There is a button to push the user to our MovieFuel movie page.  
 
+
+  
