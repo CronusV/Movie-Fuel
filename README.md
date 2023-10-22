@@ -1,6 +1,9 @@
 # Movie-Fuel
-Movie Fuel project
 
+<details open>
+<summary>Developer Quick Doc </summary>
+<br>
+ 
 # Initialize project
 1. Clone: `git clone https://github.com/CronusV/Movie-Fuel.git`
 2. Move to directory: `cd Movie-Fuel`
@@ -26,6 +29,10 @@ Movie Fuel project
 When pulling it is important to install any new modules that might have been added. But this might mean you will mutate package-lock.json.
 This can cause enormous merge conflicts. So instead of using `npm install` use `npm ci` which stands for clean install.
 It ensures packages are installed from package-lock.json file. [link](https://support.deploybot.com/article/131-why-developers-should-use-npm-ci-instead-of-npm-install-and-its-benefits#:~:text=npm%20ci%20is%20a%20command,json%20file.)
+
+</details>
+
+
 
  # User Profile Management
 
