@@ -8,7 +8,7 @@ const mockStore = configureStore([]);
 const initialState = {
     user: {
         aboutme: "Sample About Me",
-        editedText: "Sample Edited Text",
+        editedText: "Sample Changed Text",
         isEditing: false,
         username: "sample_user",
         email: "sample_email@example.com",
@@ -64,6 +64,18 @@ describe("<UserPage />", () => {
         expect(screen.getByText("Edit")).toBeInTheDocument();
         expect(screen.queryByText("Save")).not.toBeInTheDocument();
         expect(screen.queryByText("Cancel")).not.toBeInTheDocument();
+    });
+    test("should not display 'Edit' button when not in editing mode", () => {
+        initialState.user.isEditing = true;
+        render(
+            <Provider store={store}>
+                <UserPage />
+            </Provider>
+        );
+
+        expect(screen.queryByText(/Edit/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Save/)).toBeInTheDocument();
+        expect(screen.queryByText(/Cancel/)).toBeInTheDocument();
     });
 
 
