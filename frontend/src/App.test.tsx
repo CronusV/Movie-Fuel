@@ -16,7 +16,7 @@ const initialState = {
   }
 };
 const mockStore = configureStore([]);
-test('renders learn react link', () => {
+test('renders all components', () => {
   const store = mockStore(initialState); // Initialize the mock store
 
   render(
