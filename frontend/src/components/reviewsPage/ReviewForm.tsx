@@ -45,6 +45,7 @@ function ReviewForm({ setShowReplyForm, triggerRefetch, setTriggerRefetch }: Pro
         const dataResponse= await fetchMovie(payload) as unknown as responseFetchMovie;
         console.log("this is data from movie card \n",dataResponse);
         // Get the first id on the list, if its wrong then boohoo
+        if(dataResponse.data.total_results === 0) { return 48138; }
         const movieID = await dataResponse.data.results[0].id;
         console.log("This is movieID", movieID)
         return movieID;
