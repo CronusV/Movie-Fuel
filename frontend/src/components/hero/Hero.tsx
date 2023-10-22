@@ -36,7 +36,7 @@ const Hero = () => {
                 style={{ fontFamily: "Poppins, sans-serif" }}
                 as="a"
               >
-                WRITE A REVIEW
+                FIND MOVIES
               </Button>
             </LinkContainer>
             <LinkContainer to="/reviews">
