@@ -3,7 +3,8 @@ import { Card, Button} from 'react-bootstrap'
 import imageUrl from './sothebys-md.brightspotcdn.jpg';
 import { useGetMovieByIDMutation } from '../../state/movieAPI/movieApiSlice';
 import { Movie, Genre} from '../../types/Movie';
-
+import { LinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 type sideBarProps = {
   movieID: number
 }
@@ -60,7 +61,9 @@ function SideBarMovie({movieID}: sideBarProps) {
         <Card.Text className='bg-light'>
           {movieDescription}
         </Card.Text>
-        <Button variant="primary" className="mt-3" href={movieImdb} target='_blank'>Go IMBD Page</Button>
+        <LinkContainer to={`/Movies/${movieID}`}>
+        <Button variant="primary" className="mt-3">Go Movie Page</Button>
+        </LinkContainer>
       </Card.Body>
     </Card>
   )

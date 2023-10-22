@@ -55,7 +55,7 @@ function Reviews() {
             <Button variant='primary' className='mb-3' onClick={handleReplyClick}>Post Your Own Review!</Button>
             {showReplyForm ? <ReviewForm setShowReplyForm={setShowReplyForm} triggerRefetch={triggerRefetch} setTriggerRefetch={setTriggerRefetch}/> : null}
             {/* {reviews.map((review: Review) => (<div key={review.PostID}>{review.Title}</div>))} */}
-            {reviews.map((review: Review) => (<ReviewMovieCard {...review} />))}
+            {reviews.map((review: Review) => (<ReviewMovieCard key={review.PostID} {...review} />))}
         </Container>
     );
 }
