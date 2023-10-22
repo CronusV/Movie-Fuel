@@ -1,10 +1,8 @@
-
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import UserPage from "./UserPage";
 
-import userEvent from "@testing-library/user-event"; // Import userEvent
 
 const mockStore = configureStore([]);
 const initialState = {

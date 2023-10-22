@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import HomePage from './HomePage';
 import { MemoryRouter } from "react-router-dom";
-import axios from 'axios';
+
 
 const mockStore = configureStore([]);
 
