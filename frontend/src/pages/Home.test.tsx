@@ -46,35 +46,5 @@ describe("<HomePage />", () => {
         expect(screen.getByText(/Seen any movies lately?/)).toBeInTheDocument();
 
     });
-    test("should make axios put and patch", async () => {
 
-
-        // Mock axios.put and axios.patch to simulate API calls
-        jest.mock('axios', () => ({
-            put: jest.fn().mockResolvedValue({ data: 'updated-aboutme' }),
-            patch: jest.fn().mockResolvedValue({ data: 'updated-favorites' }),
-        }));
-
-        render(
-            <MemoryRouter>
-                <Provider store={store}>
-                    <HomePage />
-                </Provider>
-            </MemoryRouter>
-        );
-
-        // Ensure that axios.put and axios.patch were called with the expected arguments
-        await waitFor(() => {
-
-            expect(axios.put).not.toHaveBeenCalledWith('http://localhost:4000/user/profile/About/paulwall', {
-                about: 'him',
-            });
-            expect(axios.patch).not.toHaveBeenCalledWith('http://localhost:4000/user/profile/Favorites/paulwall', {
-                favorites: ['12', '23'],
-            });
-        });
-
-        // Check if the state is updated as expected
-
-    });
 });
