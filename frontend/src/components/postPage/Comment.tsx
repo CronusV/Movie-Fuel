@@ -55,7 +55,8 @@ function Comment({PostID, Comment, ReplyID, Author, DateTime, Likes, ReplyToID, 
         {/* Footer */}
         <Card.Footer className='d-flex justify-content-start'>
             <Button variant='primary' className='me-3' onClick={handleReplyClick}>Reply</Button>
-            <Button variant='secondary'>Likes {Likes}</Button>
+            {/* No Likes, need more time */}
+            {/* <Button variant='secondary'>Likes {Likes}</Button> */}
         </Card.Footer>
         <Card.Footer><Alert variant='info' show={showAlert} onClose={() => setShowAlert(false)} dismissible> Can't reply to comment unless you log in!</Alert>
                 {showReplyForm ? <ReplyFormComment {...props} comments={comments} setComments={setComments} showReplyForm={showReplyForm} setShowReplyForm={setShowReplyForm}/> : null}

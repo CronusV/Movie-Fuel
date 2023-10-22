@@ -27,12 +27,8 @@ function Navigation() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#movies">Movies</Nav.Link>
-            <Nav.Link href="#link">Reviews</Nav.Link>
+            <Nav.Link as={Link} to={"/Reviews"}>Reviews</Nav.Link>
             <Nav.Link as={Link} to="/Search/Barbie">Search</Nav.Link>
-
-            <Nav.Link as={Link} to={"/postTest"}>PostTest</Nav.Link>
-            <Nav.Link as={Link} to={"/reviewHome"}>ReviewHome</Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <div className="navbar-actions">
