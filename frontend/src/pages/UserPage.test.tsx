@@ -1,9 +1,9 @@
-import React from "react";
-import { render, screen, waitFor } from "@testing-library/react";
+
+import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import UserPage from "./UserPage";
-import { setUser } from "../state/userSlice";
+
 import userEvent from "@testing-library/user-event"; // Import userEvent
 
 const mockStore = configureStore([]);
@@ -20,7 +20,12 @@ const initialState = {
                 title: "Sample Title 1",
                 poster_path: "/sample_poster_1.jpg",
                 overview: "Sample Overview 1",
-            },
+            }, {
+                id: 2,
+                title: "Sample Title 2",
+                poster_path: "/sample_poster_1.jpg",
+                overview: "Sample Overview 2",
+            }
         ],
         favorites: ["1", "2"],
         profilepicture: "/sample_profile_picture.jpg",
@@ -41,7 +46,11 @@ describe("<UserPage />", () => {
         expect(screen.getByText("Your Profile Page")).toBeInTheDocument();
         expect(screen.getByText("Sample About Me")).toBeInTheDocument();
         expect(screen.getByText("Sample Title 1")).toBeInTheDocument();
-        expect(screen.getByText("delete")).toBeInTheDocument();
+        expect(screen.getByText("Sample Title 2")).toBeInTheDocument();
+        expect(screen.getByText("Sample Overview 1")).toBeInTheDocument();
+        expect(screen.getByText("Sample Overview 2")).toBeInTheDocument();
+        expect(screen.getAllByText("delete").length).toBe(2);
+        expect(screen.getByText("Edit")).toBeInTheDocument();
 
 
 
