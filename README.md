@@ -27,5 +27,26 @@ When pulling it is important to install any new modules that might have been add
 This can cause enormous merge conflicts. So instead of using `npm install` use `npm ci` which stands for clean install.
 It ensures packages are installed from package-lock.json file. [link](https://support.deploybot.com/article/131-why-developers-should-use-npm-ci-instead-of-npm-install-and-its-benefits#:~:text=npm%20ci%20is%20a%20command,json%20file.)
 
+ # User Profile Management
+
+   **Edit Your Profile**
+
+    To edit the information in your profile, click the "Edit" button in the "About Me" section.
+    You can make changes to your "About Me" text, and then choose to either save the changes by clicking "Save" or cancel the edit by clicking "Cancel."
+
+   **Manage Favorites**
+
+    In the "Favorites" section, you can see a list of your favorite items.
+    Each item in the list has a "Delete" button. Click this button to remove the item from your favorites.
+
+   **Profile Picture**
+
+    Your profile picture is displayed at the top of your profile. If you haven't uploaded a profile picture, a default image is shown.
    
+
+   **View Your Email**
+
+    Your registered email is displayed under the "Email" section.
+    This email is used for account-related notifications and communication.
+
 
