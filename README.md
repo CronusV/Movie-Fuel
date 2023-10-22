@@ -56,6 +56,15 @@ It ensures packages are installed from package-lock.json file. [link](https://su
     Your registered email is displayed under the "Email" section.
     This email is used for account-related notifications and communication.
 
+ # Searching for and Discovering movies
+
+ **Search for movies**
+  From the home page you can navigate to the search page by clicking on the "find movies" button or by clicking on the "search" button in the top navigation bar. Once on the search page (you will default to a search of 'barbie') you can enter the name of a movie you would like to search for in the search bar at the top of the screen, either 'enter' or clicking on the 'go' button will search for the text you entered
+**Discover Movies**
+  From the search page you will see buttons on each serch result that say "find similar movies" clicking on these will take you to the discover page and display movies with similar genres to the movie you clicked on. at the top there will be a dropdown button that allows you to change how the results are sorted, and you can also enter a new search to go back to the search page.
+**Movie Pages**
+  Clicking on the "go to review page" button for a movie in either search or discover will take you to a more detailed page about that movie. If you want to find even more about the movie, clicking on "go to IMDB page" will open the imdb page for that movie in a new tab.
+
 # Review Page
 1. Reviews Section
  Has a list of reviews posted from newest at the top to oldest at the bottom along with a review card that shows the image for the movie and review details such as username, postid, date, and review section. You can click on the card to be put in the post section of the review
@@ -71,6 +80,3 @@ It ensures packages are installed from package-lock.json file. [link](https://su
    Has a list of all the comments from oldest to latest. Each comment has its username, comment id, date, default picture, inner reply if comment replied to another comment, and reply button with form to reply to a specific comment.
 3. SideBar Section
    Has movie name, release date, genres, and run time as a top header. Below there is the poster for the movie and information about the movie. There is a button to push the user to our MovieFuel movie page.  
-
-
-  
