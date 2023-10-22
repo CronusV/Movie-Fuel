@@ -32,8 +32,8 @@ function Reviews() {
     const handleFetch = async () => {
         const dataGot= await refetchReviews({}) as response;
         const datab : Review[] = dataGot.data.data.Items;
-
-        setReviews(datab);
+        let sortedReviews = Array.from(datab).sort((a, b) => new Date(b.DateTime).getTime() - new Date(a.DateTime).getTime());
+        setReviews(sortedReviews);
 
     };
     const handleReplyClick = () => {
