@@ -41,6 +41,18 @@ router.get('/search/byID', (req, res) => {
         res.send(err)
     })
 });
+router.get('/credits', (req, res) => {
+    const id = req.query.idnumber;
+    logic.getDirectorByID(id)
+    .then((data) => {
+        res.status(200);
+        res.send(data)
+    })
+    .catch((err) => {
+        res.status(400);
+        res.send(err)
+    })
+});
 router.get('/images', (req,res) => {
     const id = req.query.id;
     logic.getImagesByID(id)
