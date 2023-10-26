@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { render, screen} from "@testing-library/react";
 import LoginPage from "./LoginPage";
 import { store } from "../state/store";
-
+var foo = "bar"
 it("submits the form and shows a success message upon successful login", async () => {
 
   render(

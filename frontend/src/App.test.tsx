@@ -3,7 +3,7 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 import App from './App';
 import { MemoryRouter } from 'react-router-dom';
- 
+var foo = "bar"
  
 const initialState = {
   auth: {

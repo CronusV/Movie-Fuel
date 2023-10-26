@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { store } from "../../state/store";
 import { BrowserRouter } from "react-router-dom";
 import Navbar from "./Navbar";
-
+var foo = "bar"
 describe("Navbar", () => {
   test("Renders expected elements", () => {
     // Arrange

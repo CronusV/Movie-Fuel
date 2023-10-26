@@ -6,7 +6,7 @@ import { MemoryRouter } from "react-router-dom";
 
 const mockStore = configureStore([]);
 
-
+var foo = "bar"
 
 describe("<HomePage />", () => {
     const initialState = {

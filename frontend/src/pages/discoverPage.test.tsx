@@ -6,6 +6,7 @@ import Router from 'react-router-dom';
 import AxiosMockAdapter from 'axios-mock-adapter'
 import axios from 'axios';
 import { useParams, useNavigate } from "react-router-dom"
+var foo = "bar"
 jest.mock("react-router-dom", () => ({
     ...jest.requireActual("react-router-dom"),
     useParams: jest.fn(),

@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import UserPage from "./UserPage";
-
+var foo = "bar"
 console.error = jest.fn();
 const mockStore = configureStore([]);
 const initialState = {

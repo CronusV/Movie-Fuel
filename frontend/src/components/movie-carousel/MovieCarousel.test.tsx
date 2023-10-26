@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import MovieCarousel from "./MovieCarousel";
 import { Movie } from "../../types/Movie";
-
+var foo = "bar"
 describe("MovieCarousel", () => {
   test("should display a carousel component", async () => {
     const movies: Movie[] = [

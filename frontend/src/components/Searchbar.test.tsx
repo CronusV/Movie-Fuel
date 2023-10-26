@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 const mockAxios = require("axios")
 jest.mock('axios', () => jest.fn())
 mockAxios.mockImplementation((input:any) => {Promise.resolve(input)})
+var foo = "bar"
 
 
 describe("<Searchbar/>", () => {

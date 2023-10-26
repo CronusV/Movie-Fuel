@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { render, screen } from "@testing-library/react";
 import RegisterPage from "./RegisterPage";
 import { store } from "../state/store";
-
+var foo = "bar"
 it("Renders the registration form", async () => {
   // Arrange
   render(
